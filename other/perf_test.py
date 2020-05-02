@@ -158,11 +158,11 @@ def test_3_es():
     max_score = max(scores)
     ranges = max_score - min_score
     return (
-        [((hit["_score"] - min_score) / ranges, hit["_source"]["title"]) for hit in hits],
-        numpy.min([ (hit["_score"] - min_score) / ranges for hit in hits]),
-        numpy.max([ (hit["_score"] - min_score) / ranges for hit in hits]),
-         numpy.mean([ (hit["_score"] - min_score) / ranges for hit in hits]),
-         numpy.std([ (hit["_score"] - min_score) / ranges for hit in hits]),
+        [(hit["_score"]  / max_score, hit["_source"]["title"]) for hit in hits],
+        numpy.min([ hit["_score"]  / max_score for hit in hits]),
+        numpy.max([ hit["_score"]  / max_score for hit in hits]),
+         numpy.mean([ hit["_score"]  / max_score for hit in hits]),
+         numpy.std([ hit["_score"]  / max_score for hit in hits]),
          calculate_correctness(collection, [hit["_source"]["title"] for hit in hits])
          )
 
@@ -179,11 +179,11 @@ def test_3_solr():
     max_score = max(scores)
     ranges = max_score - min_score
     return (
-        [((hit["score"] - min_score) / ranges, hit["title"]) for hit in hits],
-         numpy.min([ (hit["score"] - min_score) / ranges for hit in hits]),
-        numpy.max([ (hit["score"] - min_score) / ranges for hit in hits]),
-         numpy.mean([ (hit["score"] - min_score) / ranges for hit in hits]),
-         numpy.std([ (hit["score"] - min_score) / ranges for hit in hits]),
+        [(hit["score"]  / max_score, hit["title"]) for hit in hits],
+         numpy.min([ hit["score"]  / max_score for hit in hits]),
+        numpy.max([ hit["score"]  / max_score for hit in hits]),
+         numpy.mean([ hit["score"]  / max_score for hit in hits]),
+         numpy.std([ hit["score"]  / max_score for hit in hits]),
          calculate_correctness(collection, [hit["title"] for hit in hits])
         )
     
@@ -201,16 +201,15 @@ def test_3_sphinx():
     scores = [hit[0] for hit in hits]
     min_score = min(scores)
     max_score = max(scores)
-    ranges = max_score - min_score
 
     
 
     return (
-        [((hit[0] - min_score) / ranges, hit[1]) for hit in hits],
-         numpy.min([ (hit[0] - min_score) / ranges for hit in hits]),
-        numpy.max([ (hit[0] - min_score) / ranges for hit in hits]),
-         numpy.mean([ (hit[0] - min_score) / ranges for hit in hits]),
-         numpy.std([ (hit[0] - min_score) / ranges for hit in hits]),
+        [(hit[0]  / max_score, hit[1]) for hit in hits],
+         numpy.min([ hit[0]  / max_score for hit in hits]),
+        numpy.max([ hit[0]  / max_score for hit in hits]),
+         numpy.mean([ hit[0]  / max_score for hit in hits]),
+         numpy.std([ hit[0]  / max_score for hit in hits]),
          calculate_correctness(collection, [hit[1] for hit in hits])
         )
 
