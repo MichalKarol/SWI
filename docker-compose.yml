@@ -21,6 +21,7 @@ services:
     user: django
     depends_on:
       - postgres
+      - solr
 
   nginx:
     image: nginx:1.17.9
@@ -46,13 +47,13 @@ services:
       - 5432
     restart: unless-stopped
 
-  # solr:
-  #   image: solr:8.5.1
-  #   volumes:
-  #     - ./docker/solr/.data:/var/solr
-  #     - ./docker/solr/splitted:/splitted
-  #   command:
-  #     - solr-precreate
-  #     - gettingstarted
-  #   expose:
-  #     - 8983
+  solr:
+    image: solr:8.5.1
+    volumes:
+      - ./docker/solr/.data:/var/solr
+      - ./docker/solr/splitted:/splitted
+    command:
+      - solr-precreate
+      - gettingstarted
+    expose:
+      - 8983
