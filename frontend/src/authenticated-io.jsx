@@ -18,7 +18,30 @@ export function useAuthenticatedIO(token) {
     );
   }
 
+  function setFavourite(doc_id) {
+    return logoutOnUnauthenticated(
+      fetch("/api/stars/", {
+        method: "POST",
+        headers: [["Authorization", `Token ${token}`]],
+        body: {
+          doc_id,
+        },
+      }).then((res) => res.json())
+    );
+  }
+
+  function removeFavourite(star_id) {
+    return logoutOnUnauthenticated(
+      fetch(`/api/stars/${star_id}/`, {
+        method: "DELETE",
+        headers: [["Authorization", `Token ${token}`]],
+      })
+    );
+  }
+
   return {
     getFavourites,
+    setFavourite,
+    removeFavourite,
   };
 }

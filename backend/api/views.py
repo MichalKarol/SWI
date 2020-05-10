@@ -23,18 +23,7 @@ class StarViewSet(viewsets.ModelViewSet):
         return Star.objects.filter(user=self.request.user).all()
 
     def create(self, request, *args, **kwargs):
-        Star.objects.create(
-            user=self.request.user, doc_id=int(request.data.get("doc_id"))
-        )
-        return Response(status=204)
-
-    def delete(self, request, *args, **kwargs):
-        reaction = Star.objects.filter(
-            doc_id=int(request.data.get("doc_id")), user=self.request.user
-        ).first()
-        if not reaction:
-            return Response(status=404)
-        reaction.delete()
+        Star.objects.create(user=self.request.user, doc_id=request.data.get("doc_id"))
         return Response(status=204)
 
 
