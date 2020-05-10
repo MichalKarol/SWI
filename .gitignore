@@ -2,3 +2,9 @@ __pycache__
 .mypy_cache
 .history
 build/
+backend/.dependencies
+backend/static
+.env
+docker/nginx/.logs
+docker/postgres/.data
+docker/solr/.data
