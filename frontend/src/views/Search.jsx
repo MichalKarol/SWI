@@ -50,6 +50,11 @@ const StyledSortSelect = withStyles({
     }
 })(Select);
 
+const ContainerDiv = styled.div`
+   display: flex;
+   justify-content: start;
+`;
+
 const CheckboxContainer = styled.div`
    display: flex;
    flex-direction: column;
@@ -93,10 +98,8 @@ const Panel = withStyles({
         '&:before': {
             display: 'none',
         },
-        '&$expanded': {
-            margin: 'auto',
-        },
-        backgroundColor: "#E5E5E5"
+        backgroundColor: "#E5E5E5",
+        width: "300px"
     },
     expanded: {},
 })(ExpansionPanel);
@@ -117,16 +120,6 @@ const PanelDetails = withStyles({
         boxShadow: "2px 2px #606060",
     },
 })(ExpansionPanelDetails);
-
-function StyledRadio(props) {
-
-    return (
-        <Radio
-            disableRipple
-            color="default"
-        />
-    )
-}
 
 export function Search() {
 
@@ -186,37 +179,38 @@ export function Search() {
                     <MenuItem value='desc'>Sort from oldest</MenuItem>
                 </StyledSortSelect>
 
-                <Panel square>
-                    <PanelSummary
-                        expandIcon={<WhiteExpandMoreIcon/>}
-                    >
-                        <div>
-                            <Typography>Components</Typography>
-                        </div>
-                    </PanelSummary>
-                    <PanelDetails>
-                        <CheckboxContainer>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="secondary"
-                                    />
-                                }
-                                label="Environment"
-                            />
-                            <Divider />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="secondary"
-                                    />
-                                }
-                                label="Civil Rights"
-                            />
-                        </CheckboxContainer>
-                    </PanelDetails>
-                </Panel>
-
+                <ContainerDiv>
+                    <Panel square>
+                        <PanelSummary
+                            expandIcon={<WhiteExpandMoreIcon/>}
+                        >
+                            <div>
+                                <Typography>Components</Typography>
+                            </div>
+                        </PanelSummary>
+                        <PanelDetails>
+                            <CheckboxContainer>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            color="secondary"
+                                        />
+                                    }
+                                    label="Environment"
+                                />
+                                <Divider/>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            color="secondary"
+                                        />
+                                    }
+                                    label="Civil Rights"
+                                />
+                            </CheckboxContainer>
+                        </PanelDetails>
+                    </Panel>
+                </ContainerDiv>
             </div>
         </MuiThemeProvider>
     );
