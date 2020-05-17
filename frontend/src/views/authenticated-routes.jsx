@@ -41,6 +41,6 @@ export function AuthenticatedRoutes() {
       </Router>
     </div>
   ) : (
-    <Login />
+    <Search />
   );
 }
