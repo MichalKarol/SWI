@@ -1,360 +1,199 @@
-import React, {useState} from "react";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Button from "@material-ui/core/Button";
-import SearchIcon from '@material-ui/icons/Search';
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import InputBase from "@material-ui/core/InputBase";
-import withStyles from "@material-ui/core/styles/withStyles";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import Typography from "@material-ui/core/Typography";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Divider from "@material-ui/core/Divider";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
-import TodayIcon from '@material-ui/icons/Today';import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-    KeyboardDatePicker,
-    MuiPickersUtilsProvider,
-} from '@material-ui/pickers';
 
-const StyledUpperKeyboardDatePicker = withStyles({
-    root: {
-        backgroundColor: "#606060",
-        borderRadius: "0.5em 0 0 0",
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    },
-})(KeyboardDatePicker);
+import { Dropdown, ExpandingMultiSelectDropdown } from "../components/Dropdown";
+import { DateField } from "../components/DateField";
+import { ResultCard } from "../components/ResultCard";
+import { useHistory } from "react-router-dom";
 
-const StyledLowerKeyboardDatePicker = withStyles({
-    root: {
-        backgroundColor: "#606060",
-        borderRadius: "0 0 0.5em 0",
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    },
-})(KeyboardDatePicker);
+// const StyledDivider = withStyles({
+//   root: {
+//     color: "#fff",
+//   },
+// })(Divider);
 
-const StyledDivider = withStyles({
-  root: {
-      color: '#fff'
-  }
-})(Divider);
+// const StyledInputBase = withStyles({
+//   root: {
+//     fontStyle: "normal",
+//     fontSize: "24px",
+//     backgroundColor: "#ffffff",
+//     textIndent: "1em",
+//     boxShadow:
+//       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+//   },
+// })(InputBase);
 
+// const StyledSortSelect = withStyles({
+//   root: {
+//     borderRadius: "0.5em !important",
+//     backgroundColor: "#606060 !important",
+//     color: "#ffffff",
+//     textIndent: "0.5em",
+//     boxShadow:
+//       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+//   },
+// })(Select);
 
-const StyledCard = withStyles({
-  root: {
-      boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-      width: '400px'
-  }
-})(Card);
+// const ContainerDiv = styled.div`
+//   display: flex;
+//   justify-content: start;
+// `;
 
-const StyledSearchButton = withStyles({
-    root: {
-        borderRadius: '0 1em 0 0',
-        fontStyle: 'normal',
-        fontSize: '24px',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-    }
-})(Button);
+// const DateContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   width: 200px;
+// `;
 
-const StyledMoreButton = withStyles({
-    root: {
-        borderRadius: '0 1em 1em 0',
-        fontStyle: 'normal',
-        fontSize: '24px',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-    }
-})(Button);
+// const SearchContainer = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   height: auto;
+//   width: 100%;
+//   align-items: stretch;
+//   height: 5vh;
+// `;
 
-const StyledSearchSelect = withStyles({
-    root: {
-        borderRadius: '1em 0 0 0 !important',
-        backgroundColor: "#606060 !important",
-        color: '#ffffff',
-        textIndent: '1em',
-        fontStyle: 'normal',
-        fontSize: '24px',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-    }
-})(Select);
-
-const StyledInputBase = withStyles({
-    root: {
-        fontStyle: 'normal',
-        fontSize: '24px',
-        backgroundColor: '#ffffff',
-        textIndent: '1em',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    }
-})(InputBase);
-
-const StyledSortSelect = withStyles({
-    root: {
-        borderRadius: '0.5em !important',
-        backgroundColor: "#606060 !important",
-        color: '#ffffff',
-        textIndent: '0.5em',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-    }
-})(Select);
-
-const ContainerDiv = styled.div`
-   display: flex;
-   justify-content: start;
-`;
-
-const CheckboxContainer = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   height: auto;
-`;
-
-const DateContainer = styled.div`
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   width: 200px;
-`;
-
-const SearchContainer = styled.div`
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   height: auto;
-   width: 100%;
-   align-items: stretch;
-   height: 5vh;
-`;
-
-const LimitText = styled.span`
-    color: black
-`;
-
-const theme = createMuiTheme({
-        palette: {
-            primary: {
-                main: "#606060"
-            },
-            secondary: {
-                main: "#584DDE"
-            },
-        }
-});
-
-const WhiteExpandMoreIcon = withStyles({
-    root: {
-        color: '#FFFFFF !important',
-    }
-})(ExpandMoreIcon);
-
-const StyledTodayIcon = withStyles({
-    root: {
-        color: '#FFFFFF !important',
-    }
-})(TodayIcon);
-
-const Panel = withStyles({
-    root: {
-        '&:not(:last-child)': {
-            borderBottom: 0,
-        },
-        '&:before': {
-            display: 'none',
-        },
-        borderRadius: "0.5em 0 0.5em 0",
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-        backgroundColor: "#E5E5E5",
-        width: "300px"
-    },
-    expanded: {},
-})(ExpansionPanel);
-
-const PanelSummary = withStyles({
-    root: {
-        backgroundColor: "#606060",
-        color: '#ffffff',
-        borderRadius: "0.5em 0 0.5em 0",
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    },
-    expanded: {},
-})(ExpansionPanelSummary);
-
-const PanelDetails = withStyles({
-    root: {
-        backgroundColor: "#ffffff",
-        borderRadius: '0 0 0 0.5em',
-    },
-})(ExpansionPanelDetails);
+// const LimitText = styled.span`
+//   color: black;
+// `;
 
 export function Search() {
-    const [selectedFromDate, setSelectedFromDate] = React.useState(null);
-    const [selectedToDate, setSelectedToDate] = React.useState(null);
+  const history = useHistory();
+  const [results, setResults] = useState([
+    {
+      title: "Ala ma kota",
+      description: "ALA MA KOTA I NIE MA ALI",
+      isFavourite: false,
+    },
+    {
+      title: "Ala ma kota1",
+      description: "ALA MA KOTA I NIE MA ALI",
+      isFavourite: false,
+    },
+    {
+      title: "Ala ma kota2",
+      description: "ALA MA KOTA I NIE MA ALI",
+      isFavourite: false,
+    },
+    {
+      title: "Ala ma kota3",
+      description: "ALA MA KOTA I NIE MA ALI",
+      isFavourite: false,
+    },
+    {
+      title: "Ala ma kota4",
+      description: "ALA MA KOTA I NIE MA ALI",
+      isFavourite: false,
+    },
+  ]);
 
-    const handleDateFromChange = (date) => {
-        setSelectedFromDate(date);
+  const cardsDivRef = useRef(null);
+  useEffect(() => {
+    function onScroll() {
+      if (cardsDivRef.current) {
+        const scrollTop = cardsDivRef.current.scrollTop;
+        const scrollHeight = cardsDivRef.current.scrollHeight;
+        const clientHeight = cardsDivRef.current.clientHeight;
+        if (scrollTop + clientHeight > (3 / 4) * scrollHeight) {
+          setResults((s) => [...s, ...s]); // Poor man infinite scroll
+        }
+      }
+    }
+
+    cardsDivRef.current &&
+      cardsDivRef.current.addEventListener("scroll", onScroll);
+
+    return () => {
+      cardsDivRef.current &&
+        cardsDivRef.current.removeEventListener("scroll", onScroll);
     };
+  }, [cardsDivRef.current]);
 
-    const handleDateToChange = (date) => {
-        setSelectedToDate(date);
-    };
+  const SearchDiv = styled.div`
+    display: grid;
+    grid-template-columns: 30fr 70fr;
+    grid-template-rows: auto;
+    grid-template-areas: "filters results";
+  `;
 
-    return (
-        <MuiThemeProvider theme={theme}>
-            <SearchContainer>
-                <StyledSearchSelect
-                    IconComponent={WhiteExpandMoreIcon}
-                    MenuProps={{
-                        getContentAnchorEl: null,
-                        anchorOrigin: {
-                            vertical: "bottom",
-                        }
-                    }}
-                    defaultValue='All'
-                    displayEmpty='All fields'
-                    disableUnderline
-                    // onChange={handleChange}
-                >
-                    <MenuItem value='All'>All fields</MenuItem>
-                    <MenuItem value='Title'>Title</MenuItem>
-                    <MenuItem value='Content'>Content</MenuItem>
-                </StyledSearchSelect>
-                <StyledInputBase
-                    placeholder="Type to search"
-                />
-                <StyledSearchButton
-                    variant="contained"
-                    color="secondary"
-                    // className={classes.button}
-                    endIcon={<SearchIcon/>}
-                >
-                    Search
-                </StyledSearchButton>
-            </SearchContainer>
-            <div>
-                <LimitText>
-                    Limit your search:
-                </LimitText>
-                <StyledSortSelect
-                    IconComponent={WhiteExpandMoreIcon}
-                    MenuProps={{
-                        getContentAnchorEl: null,
-                        anchorOrigin: {
-                            vertical: "bottom",
-                        }
-                    }}
-                    defaultValue='relevance'
-                    displayEmpty='Sort by relevance'
-                    disableUnderline
-                >
-                    <MenuItem value='relevance'>Sort by relevance</MenuItem>
-                    <MenuItem value='title'>Sort by title</MenuItem>
-                    <MenuItem value='asc'>Sort from newest</MenuItem>
-                    <MenuItem value='desc'>Sort from oldest</MenuItem>
-                </StyledSortSelect>
+  const FiltersDiv = styled.div`
+    background: blue;
+    grid-area: filters;
+  `;
 
-                <ContainerDiv>
-                    <Panel square>
-                        <PanelSummary
-                            expandIcon={<WhiteExpandMoreIcon/>}
-                        >
-                            <div>
-                                <Typography>Components</Typography>
-                            </div>
-                        </PanelSummary>
-                        <PanelDetails>
-                            <CheckboxContainer>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            color="secondary"
-                                        />
-                                    }
-                                    label="Environment"
-                                />
-                                <Divider/>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            color="secondary"
-                                        />
-                                    }
-                                    label="Civil Rights"
-                                />
-                            </CheckboxContainer>
-                        </PanelDetails>
-                    </Panel>
-                </ContainerDiv>
+  const ResultsDiv = styled.div`
+    grid-area: results;
+    display: grid;
+    grid-template-rows: 10fr 90fr;
+    grid-template-areas:
+      "info"
+      "cards";
+  `;
 
-                <DateContainer>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <StyledUpperKeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="dd/MM/yyyy"
-                            value={selectedFromDate}
-                            placeholder="Date from -"
-                            onChange={handleDateFromChange}
-                            InputProps={{
-                                disableUnderline: true,
-                                style: {color: '#fff'},
-                            }}
-                            keyboardIcon={<StyledTodayIcon/>}
-                        />
-                        <StyledDivider/>
-                        <StyledLowerKeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="dd/MM/yyyy"
-                            value={selectedToDate}
-                            placeholder="- Date to"
-                            onChange={handleDateToChange}
-                            InputProps={{
-                                disableUnderline: true,
-                                style: {color: '#fff'},
-                            }}
-                            keyboardIcon={<StyledTodayIcon/>}
-                        />
-                    </MuiPickersUtilsProvider>
-                </DateContainer>
+  const InfoDiv = styled.div`
+    background: orange;
+    grid-area: info;
+  `;
 
-                <StyledCard>
-                    <CardContent>
-                        <Typography color="secondary" gutterBottom>
-                            Title
-                        </Typography>
-                        <Typography>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type...
-                        </Typography>
-                        <IconButton>
-                            <FavoriteBorderOutlinedIcon/>
-                        </IconButton>
-                        <IconButton>
-                            <FavoriteOutlinedIcon/>
-                        </IconButton>
-                        <StyledMoreButton
-                            variant="contained"
-                            color="secondary"
-                            // className={classes.button}
-                        >
-                            Show more
-                        </StyledMoreButton>
-                    </CardContent>
+  const CardsDiv = styled.div`
+    background: green;
+    grid-area: cards;
+    position: relative;
+    overflow: auto;
+  `;
 
-                </StyledCard>
-            </div>
-        </MuiThemeProvider>
-    );
+  return (
+    <SearchDiv>
+      <FiltersDiv>
+        <span>Limit your search:</span>
 
+        <ExpandingMultiSelectDropdown
+          title="Components"
+          values={[
+            { value: "environment", label: "Environment" },
+            { value: "civil rights", label: "Civil Rights" },
+          ]}
+        />
+        <DateField placeholder="Date from" />
+        {/* <StyledDivider /> */}
+        <DateField placeholder="Date to" />
+      </FiltersDiv>
+      <ResultsDiv>
+        <InfoDiv>
+          <span>Found {results.length} results</span>
+          <Dropdown
+            values={[
+              { value: "relevance", label: "Sort by relevance" },
+              { value: "title", label: "Sort by title" },
+              { value: "asc", label: "Sort by newest" },
+              { value: "desc", label: "Sort by oldest" },
+            ]}
+          />
+        </InfoDiv>
+        <CardsDiv ref={cardsDivRef}>
+          <div style={{ position: "absolute" }}>
+            {results.map((el, idx) => (
+              <ResultCard
+                {...el}
+                key={idx}
+                onFavouriteClick={() => {
+                  setResults((s) => {
+                    const newState = [...s];
+                    newState[idx].isFavourite = !newState[idx].isFavourite;
+                    return newState;
+                  });
+                }}
+                onShowMoreClick={() => {
+                  history.push(`/document/${idx}`);
+                }}
+              />
+            ))}
+          </div>
+        </CardsDiv>
+      </ResultsDiv>
+    </SearchDiv>
+  );
 }

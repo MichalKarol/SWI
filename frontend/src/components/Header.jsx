@@ -1,26 +1,48 @@
-import React, { useContext } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../auth";
+import { SearchContext } from "../search";
+import { Dropdown } from "../components/Dropdown";
+import { Search } from "@material-ui/icons";
+import { InputBase, Button } from "@material-ui/core";
+import styled from "styled-components";
 
 export function Header() {
   const authContext = useContext(AuthenticationContext);
+  const searchContext = useContext(SearchContext);
+
+  const HeaderDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: header;
+    background: red;
+  `;
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="/search">Nazwa</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/search">Wyszukiwanie</Nav.Link>
-          <Nav.Link href="/favourite">Ulubione</Nav.Link>
-          <Nav.Link
-            onClick={() => {
-              authContext.setToken("");
-            }}
-          >
-            Wyloguj
-          </Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <HeaderDiv className="grid-layout__header">
+      <Dropdown
+        values={[
+          { value: "All", label: "All fields" },
+          { value: "Title", label: "Title" },
+          { value: "Content", label: "Content" },
+        ]}
+        value={searchContext.state.field || ""}
+        onChange={(event) => {
+          const value = event.target.value;
+          searchContext.setState((state) => ({ ...state, field: value }));
+        }}
+      />
+      <InputBase
+        placeholder="Type to search"
+        value={searchContext.state.query || ""}
+        onChange={(event) => {
+          const value = event.target.value;
+          searchContext.setState((state) => ({ ...state, query: value }));
+        }}
+      />
+      <Button variant="contained" color="secondary" endIcon={<Search />}>
+        Search
+      </Button>
+      {JSON.stringify(searchContext.state)}
+    </HeaderDiv>
   );
 }
