@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import IntegrityError
+from django.http import HttpResponse
 from rest_framework import viewsets, permissions
 from rest_framework.authtoken.models import Token
 from .serializers import StarSerializer
@@ -83,7 +84,8 @@ def search(request, proxy_path):
     
     try:
         response = requests.get(url)
-        return Response(response.content, status=response.status_code)
+        r = HttpResponse(response.text, status=response.status_code, content_type='application/json')
+        return r
     except Exception as e:
         return Response(
             {'message': f'Search engine error url={url} user={request.user.username} exception={e}'},
