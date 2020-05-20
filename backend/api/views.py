@@ -1,8 +1,10 @@
 import requests
+import json
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import IntegrityError
+from django.http import HttpResponse
 from rest_framework import viewsets, permissions
 from rest_framework.authtoken.models import Token
 from .serializers import StarSerializer
@@ -72,7 +74,7 @@ def register(request):
 
 
 @permission_classes((permissions.IsAuthenticated,))
-@api_view(["POST", "GET", "PUT", "PATCH"])
+@api_view(["POST", "GET"])
 def search(request, proxy_path):
     """
     Search engine proxy
@@ -82,8 +84,12 @@ def search(request, proxy_path):
         url += '?' + request.META['QUERY_STRING']
     
     try:
-        response = requests.get(url)
-        return Response(response.content, status=response.status_code)
+        if request.method == 'GET':
+            response = requests.get(url)
+        elif request.method == 'POST':
+            response = requests.post(url, json=request.data)
+        r = HttpResponse(response.text, status=response.status_code, content_type='application/json')
+        return r
     except Exception as e:
         return Response(
             {'message': f'Search engine error url={url} user={request.user.username} exception={e}'},

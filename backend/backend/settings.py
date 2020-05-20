@@ -143,4 +143,4 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
-SEARCH_ENGINE_ENDPOINT = 'http://solr:8983'
+SEARCH_ENGINE_ENDPOINT = 'http://solr:8983/solr/judge'
