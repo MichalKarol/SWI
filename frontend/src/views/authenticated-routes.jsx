@@ -21,7 +21,7 @@ export function AuthenticatedRoutes() {
   const auth = useContext(AuthenticationContext);
   const searchContext = useContext(SearchContext);
 
-  const [searchState, setSearchState] = useState({});
+  const [searchState, setSearchState] = useState({field:"All", sort: "relevance", query: ""});
 
   const theme = createMuiTheme({
     palette: {

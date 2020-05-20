@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {useState, useRef, useEffect, useContext} from "react";
 import styled from "styled-components";
 
-import { StyledSortDropdown} from "../components/Dropdown";
+import {StyledFieldDropdown, StyledSortDropdown} from "../components/Dropdown";
 import { LowerDateField, UpperDateField} from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory } from "react-router-dom";
@@ -10,6 +10,8 @@ import { StyledDivider } from "../components/StyledComponents";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import Divider from "@material-ui/core/Divider";
+import {SearchContext} from "../search";
 
 // const StyledDivider = withStyles({
 //   root: {
@@ -56,6 +58,8 @@ import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 export function Search() {
   const history = useHistory();
+  const searchContext = useContext(SearchContext);
+
   const [results, setResults] = useState([
     {
       title: "Ala ma kota",
@@ -85,6 +89,7 @@ export function Search() {
   ]);
 
   const cardsDivRef = useRef(null);
+
   useEffect(() => {
     function onScroll() {
       if (cardsDivRef.current) {
@@ -98,11 +103,11 @@ export function Search() {
     }
 
     cardsDivRef.current &&
-      cardsDivRef.current.addEventListener("scroll", onScroll);
+    cardsDivRef.current.addEventListener("scroll", onScroll);
 
     return () => {
       cardsDivRef.current &&
-        cardsDivRef.current.removeEventListener("scroll", onScroll);
+      cardsDivRef.current.removeEventListener("scroll", onScroll);
     };
   }, [cardsDivRef.current]);
 
@@ -128,12 +133,27 @@ export function Search() {
   `;
 
   const InfoDiv = styled.div`
-    background: orange;
+    background: E5E5E5;
     grid-area: info;
-  `;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    `;
+
+  const CalendarDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    `;
+
+  const DividerDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    `;
 
   const CardsDiv = styled.div`
-    background: green;
+    background: E5E5E5;
     grid-area: cards;
     position: relative;
     overflow: auto;
@@ -141,79 +161,96 @@ export function Search() {
 
   const pivotTooltip = (
       <Tooltip title="Mark fields to group searches" aria-label="add">
-          <HelpOutlineIcon />
+        <HelpOutlineIcon/>
       </Tooltip>
   )
 
   return (
-    <SearchDiv>
-      <FiltersDiv>
-        <Typography
-            color={"textPrimary"}
-            align={"center"}
-        >
-          Limit your search:
-        </Typography>
+      <SearchDiv>
+        <DividerDiv>
+          <FiltersDiv>
+            <Typography
+                color={"textPrimary"}
+                align={"center"}
+            >
+              Limit your search:
+            </Typography>
 
-        <ExpandingMultiSelectDropdown
-          title="Component"
-          values={[
-            { value: "environment", label: "Environment" },
-            { value: "civil rights", label: "Civil Rights" },
-          ]}
-        />
-        <ExpandingMultiSelectDropdown
-          title="Topic"
-          values={[
-            { value: "environment", label: "Environment" },
-            { value: "civil rights", label: "Civil Rights" },
-          ]}
-        />
-        <ExpandingMultiSelectDropdown
-          title="Pivot field"
-          tooltip={pivotTooltip}
-          values={[
-            { value: "environment", label: "Environment" },
-            { value: "civil rights", label: "Civil Rights" },
-          ]}
-        />
-        <UpperDateField placeholder="Date from" />
-        <StyledDivider />
-        <LowerDateField placeholder="Date to" />
-      </FiltersDiv>
-      <ResultsDiv>
-        <InfoDiv>
-          <span>Found {results.length} results</span>
-          <StyledSortDropdown
-            values={[
-              { value: "relevance", label: "Sort by relevance" },
-              { value: "title", label: "Sort by title" },
-              { value: "asc", label: "Sort by newest" },
-              { value: "desc", label: "Sort by oldest" },
-            ]}
+            <ExpandingMultiSelectDropdown
+                title="Component"
+                values={[
+                  {value: "environment", label: "Environment"},
+                  {value: "civil rights", label: "Civil Rights"},
+                ]}
+            />
+            <ExpandingMultiSelectDropdown
+                title="Topic"
+                values={[
+                  {value: "environment", label: "Environment"},
+                  {value: "civil rights", label: "Civil Rights"},
+                ]}
+            />
+            <ExpandingMultiSelectDropdown
+                title="Pivot field"
+                tooltip={pivotTooltip}
+                values={[
+                  {value: "environment", label: "Environment"},
+                  {value: "civil rights", label: "Civil Rights"},
+                ]}
+            />
+            <CalendarDiv>
+              <UpperDateField placeholder="Date from"/>
+              <StyledDivider/>
+              <LowerDateField placeholder="Date to"/>
+            </CalendarDiv>
+          </FiltersDiv>
+          <Divider
+              orientation='vertical'
           />
-        </InfoDiv>
-        <CardsDiv ref={cardsDivRef}>
-          <div style={{ position: "absolute" }}>
-            {results.map((el, idx) => (
-              <ResultCard
-                {...el}
-                key={idx}
-                onFavouriteClick={() => {
-                  setResults((s) => {
-                    const newState = [...s];
-                    newState[idx].isFavourite = !newState[idx].isFavourite;
-                    return newState;
-                  });
+        </DividerDiv>
+        <ResultsDiv>
+          <InfoDiv>
+            <Typography
+                color={"textPrimary"}
+                align={"center"}
+            >
+              Found {results.length} results
+            </Typography>
+            <StyledSortDropdown
+                values={[
+                  {value: "relevance", label: "Sort by relevance"},
+                  {value: "title", label: "Sort by title"},
+                  {value: "asc", label: "Sort by newest"},
+                  {value: "desc", label: "Sort by oldest"},
+                ]}
+                value={searchContext.state.sort || ""}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  searchContext.setState((state) => ({...state, sort: value}));
                 }}
-                onShowMoreClick={() => {
-                  history.push(`/document/${idx}`);
-                }}
-              />
-            ))}
-          </div>
-        </CardsDiv>
-      </ResultsDiv>
-    </SearchDiv>
+            />
+          </InfoDiv>
+          <CardsDiv ref={cardsDivRef}>
+            <div style={{position: "absolute"}}>
+              {results.map((el, idx) => (
+                  <ResultCard
+                      {...el}
+                      key={idx}
+                      onFavouriteClick={() => {
+                        setResults((s) => {
+                          const newState = [...s];
+                          newState[idx].isFavourite = !newState[idx].isFavourite;
+                          return newState;
+                        });
+                      }}
+                      onShowMoreClick={() => {
+                        history.push(`/document/${idx}`);
+                      }}
+                  />
+              ))}
+            </div>
+          </CardsDiv>
+        </ResultsDiv>
+      </SearchDiv>
   );
 }

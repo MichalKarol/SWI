@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Typography} from "@material-ui/core";
 import { SearchContext, generateQueryParams } from "../search";
 import {StyledBackButton, StyledElementButton} from "../components/StyledComponents";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import {Search} from "@material-ui/icons";
 
 export function Document(props) {
   const history = useHistory();
@@ -20,12 +19,14 @@ export function Document(props) {
 
   const TextDiv = styled.div`
     grid-area: text;
-    background: grey;
+    background: E5E5E5;
   `;
 
   const InfoDiv = styled.div`
-    background: yellow;
+    background: E5E5E5;
     grid-area: info;
+    display: flex;
+    flex-direction: column;
   `;
 
   return (
@@ -42,14 +43,18 @@ export function Document(props) {
         >
           Back to search results
         </StyledBackButton>
-        Components
+        <Typography color="textPrimary">
+          Components
+        </Typography>
         <StyledElementButton
           variant="contained"
           color="primary"
         >
           Component
         </StyledElementButton>
-        Topics
+        <Typography color="textPrimary">
+          Topics
+        </Typography>
         <StyledElementButton
           variant="contained"
           color="primary"

@@ -6,7 +6,7 @@ import {FavoriteOutlined} from "@material-ui/icons";
 
 export function UserBar(props) {
   const UserBarDiv = styled.div`
-    background: black;
+    background: E5E5E5;
     color: white;
     grid-area: user;
   `;

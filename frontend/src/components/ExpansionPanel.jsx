@@ -35,11 +35,10 @@ const Panel = withStyles({
     "&:before": {
       display: "none",
     },
-    borderRadius: "0.5em 0 0.5em 0",
-    boxShadow:
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     backgroundColor: "#E5E5E5",
     width: "300px",
+    marginBottom: "16px",
   },
   expanded: {},
 })(ExpansionPanel);
@@ -48,12 +47,14 @@ const PanelSummary = withStyles({
   root: {
     backgroundColor: "#606060",
     color: "#ffffff",
-    borderRadius: "0.5em 0 0.5em 0",
-    boxShadow:
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    // borderRadius: "0.5em 0 0.5em 0",
+    // borderRadius: props.radius,
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
   },
   expanded: {},
 })(ExpansionPanelSummary);
+
+// const PanelSummary = withStyles(summaryStyles)(ExpansionPanelSummary);
 
 const PanelDetails = withStyles({
   root: {
@@ -66,9 +67,28 @@ export function ExpandingMultiSelectDropdown(props) {
   const [value, setValue] = useState(
     props.values.length > 0 ? props.values[0].value : {}
   );
+  const [summaryRadius, setSummaryRadius] = useState("0.5em 0 0.5em 0");
+  const [panelRadius, setPanelRadius] = useState("0.5em 0 0.5em 0");
   return (
-    <Panel square>
-      <PanelSummary expandIcon={<WhiteExpandMoreIcon />}>
+    <Panel
+        square
+        style={{ borderRadius: panelRadius }}
+        onChange={(event, expanded) => {
+          console.log('expanded', expanded)
+          if(expanded === true) {
+            setSummaryRadius("0.5em 0 0 0");
+            setPanelRadius("0.5em 0 0 0.5em");
+          }
+          else {
+            setSummaryRadius("0.5em 0 0.5em 0");
+            setPanelRadius("0.5em 0 0.5em 0");
+          }
+        }}
+    >
+      <PanelSummary
+          expandIcon={<WhiteExpandMoreIcon />}
+          style={{ borderRadius: summaryRadius }}
+      >
         <Typography>{props.title}</Typography>
         <Typography>{props.tooltip}</Typography>
       </PanelSummary>
