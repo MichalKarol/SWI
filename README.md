@@ -15,11 +15,19 @@ npm start
 ## Quick start
 
 * Install docker and docker-compose
+* Copy DoJ json file to `docker/solr/doj.json`
 * Start application
 
 ```bash
 cp .env.dist .env
 docker-compose up -d
+```
+
+* Index documents
+
+```bash
+docker-compose exec solr bash
+$ bin/post -c judge /tmp/doj.json
 ```
 
 * Open http://localhost

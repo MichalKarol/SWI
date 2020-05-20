@@ -7,4 +7,5 @@ backend/static
 .env
 docker/nginx/.logs
 docker/postgres/.data
-docker/solr/.data
+docker/solr/judge/data
+docker/solr/doj.json

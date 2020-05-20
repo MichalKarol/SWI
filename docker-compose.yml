@@ -50,8 +50,8 @@ services:
   solr:
     image: solr:8.5.1
     volumes:
-      - ./docker/solr/.data:/var/solr
-      - ./docker/solr/splitted:/splitted
+      - ./docker/solr/judge:/var/solr/data/judge
+      - ./docker/solr/doj.json:/tmp/doj.json
     command:
       - solr-precreate
       - gettingstarted
