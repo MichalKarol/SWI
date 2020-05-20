@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { SearchContext, generateQueryParams } from "../search";
+import {StyledBackButton, StyledElementButton} from "../components/StyledComponents";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Search} from "@material-ui/icons";
 
 export function Document(props) {
   const history = useHistory();
@@ -29,16 +32,30 @@ export function Document(props) {
     <DocumentDiv>
       <TextDiv>DOCUMENT {props.id}</TextDiv>
       <InfoDiv>
-        <Button
+        <StyledBackButton
           variant="contained"
           color="secondary"
+          startIcon={<ArrowBackIcon />}
           onClick={() => {
             history.push(`/search?${generateQueryParams(searchContext.state)}`);
           }}
         >
           Back to search results
-        </Button>
-        components Topics
+        </StyledBackButton>
+        Components
+        <StyledElementButton
+          variant="contained"
+          color="primary"
+        >
+          Component
+        </StyledElementButton>
+        Topics
+        <StyledElementButton
+          variant="contained"
+          color="primary"
+        >
+          Topic
+        </StyledElementButton>
       </InfoDiv>
     </DocumentDiv>
   );

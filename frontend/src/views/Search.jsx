@@ -1,10 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
-import { Dropdown, ExpandingMultiSelectDropdown } from "../components/Dropdown";
-import { DateField } from "../components/DateField";
+import { StyledSortDropdown} from "../components/Dropdown";
+import { LowerDateField, UpperDateField} from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory } from "react-router-dom";
+import { ExpandingMultiSelectDropdown } from "../components/ExpansionPanel";
+import { StyledDivider } from "../components/StyledComponents";
+import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 // const StyledDivider = withStyles({
 //   root: {
@@ -22,17 +27,6 @@ import { useHistory } from "react-router-dom";
 //       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
 //   },
 // })(InputBase);
-
-// const StyledSortSelect = withStyles({
-//   root: {
-//     borderRadius: "0.5em !important",
-//     backgroundColor: "#606060 !important",
-//     color: "#ffffff",
-//     textIndent: "0.5em",
-//     boxShadow:
-//       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-//   },
-// })(Select);
 
 // const ContainerDiv = styled.div`
 //   display: flex;
@@ -120,7 +114,7 @@ export function Search() {
   `;
 
   const FiltersDiv = styled.div`
-    background: blue;
+    background: E5E5E5;
     grid-area: filters;
   `;
 
@@ -145,26 +139,52 @@ export function Search() {
     overflow: auto;
   `;
 
+  const pivotTooltip = (
+      <Tooltip title="Mark fields to group searches" aria-label="add">
+          <HelpOutlineIcon />
+      </Tooltip>
+  )
+
   return (
     <SearchDiv>
       <FiltersDiv>
-        <span>Limit your search:</span>
+        <Typography
+            color={"textPrimary"}
+            align={"center"}
+        >
+          Limit your search:
+        </Typography>
 
         <ExpandingMultiSelectDropdown
-          title="Components"
+          title="Component"
           values={[
             { value: "environment", label: "Environment" },
             { value: "civil rights", label: "Civil Rights" },
           ]}
         />
-        <DateField placeholder="Date from" />
-        {/* <StyledDivider /> */}
-        <DateField placeholder="Date to" />
+        <ExpandingMultiSelectDropdown
+          title="Topic"
+          values={[
+            { value: "environment", label: "Environment" },
+            { value: "civil rights", label: "Civil Rights" },
+          ]}
+        />
+        <ExpandingMultiSelectDropdown
+          title="Pivot field"
+          tooltip={pivotTooltip}
+          values={[
+            { value: "environment", label: "Environment" },
+            { value: "civil rights", label: "Civil Rights" },
+          ]}
+        />
+        <UpperDateField placeholder="Date from" />
+        <StyledDivider />
+        <LowerDateField placeholder="Date to" />
       </FiltersDiv>
       <ResultsDiv>
         <InfoDiv>
           <span>Found {results.length} results</span>
-          <Dropdown
+          <StyledSortDropdown
             values={[
               { value: "relevance", label: "Sort by relevance" },
               { value: "title", label: "Sort by title" },

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../auth";
 import { SearchContext } from "../search";
-import { Dropdown } from "../components/Dropdown";
+import {Dropdown, StyledFieldDropdown} from "../components/Dropdown";
 import { Search } from "@material-ui/icons";
 import { InputBase, Button } from "@material-ui/core";
 import styled from "styled-components";
+import {StyledSearchButton} from "./StyledComponents";
 
 export function Header() {
   const authContext = useContext(AuthenticationContext);
@@ -19,7 +20,7 @@ export function Header() {
   `;
   return (
     <HeaderDiv className="grid-layout__header">
-      <Dropdown
+      <StyledFieldDropdown
         values={[
           { value: "All", label: "All fields" },
           { value: "Title", label: "Title" },
@@ -39,9 +40,9 @@ export function Header() {
           searchContext.setState((state) => ({ ...state, query: value }));
         }}
       />
-      <Button variant="contained" color="secondary" endIcon={<Search />}>
+      <StyledSearchButton variant="contained" color="secondary" endIcon={<Search />}>
         Search
-      </Button>
+      </StyledSearchButton>
       {JSON.stringify(searchContext.state)}
     </HeaderDiv>
   );
