@@ -6,9 +6,9 @@ import {
   CardContent,
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
-import { FavoriteOutlined, FavoriteBorderOutlined } from "@material-ui/icons";
-import { StyledMoreButton } from "./StyledComponents";
+import {StyledMoreButton, YellowStarIcon} from "./StyledComponents";
 import styled from "styled-components";
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 export function ResultCard(props) {
   const StyledCard = withStyles({
@@ -36,9 +36,13 @@ export function ResultCard(props) {
             <Typography>{props.description}</Typography>
             <IconButton onClick={props.onFavouriteClick}>
               {props.isFavourite ? (
-                  <FavoriteBorderOutlined/>
+                  <YellowStarIcon
+                      fontSize="large"
+                  />
               ) : (
-                  <FavoriteOutlined/>
+                  <StarBorderIcon
+                      fontSize="large"
+                  />
               )}
             </IconButton>
             <StyledMoreButton

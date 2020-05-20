@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  Select,
-  MenuItem,
   Typography,
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -10,15 +8,9 @@ import {
   Checkbox,
   Divider,
 } from "@material-ui/core";
-import { ExpandMore } from "@material-ui/icons";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styled from "styled-components";
-
-const WhiteExpandMoreIcon = withStyles({
-  root: {
-    color: "#FFFFFF !important",
-  },
-})(ExpandMore);
+import {WhiteExpandMoreIcon} from "./StyledComponents";
 
 const CheckboxContainer = styled.div`
   display: flex;

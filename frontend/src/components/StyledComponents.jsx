@@ -3,6 +3,8 @@ import "date-fns";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {Button, InputBase} from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
+import {ExpandMore, Star} from "@material-ui/icons";
+import StarIcon from '@material-ui/icons/Star';
 
 export const StyledSearchButton = withStyles({
     root: {
@@ -36,6 +38,7 @@ export const StyledSideButton = withStyles({
         borderRadius: "0 5em 5em 0",
         fontStyle: "normal",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        margin: "8px",
     },
 })(Button);
 
@@ -64,3 +67,15 @@ export const StyledMoreButton = withStyles({
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     },
 })(Button);
+
+export const WhiteExpandMoreIcon = withStyles({
+  root: {
+    color: "#FFFFFF !important",
+  },
+})(ExpandMore);
+
+export const YellowStarIcon = withStyles({
+  root: {
+    color: "gold !important",
+  },
+})(Star);
