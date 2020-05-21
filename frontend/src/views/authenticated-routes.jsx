@@ -21,7 +21,11 @@ export function AuthenticatedRoutes() {
   const auth = useContext(AuthenticationContext);
   const searchContext = useContext(SearchContext);
 
-  const [searchState, setSearchState] = useState({field:"All", sort: "relevance", query: ""});
+  const [searchState, setSearchState] = useState({
+    field: "All",
+    sort: "relevance",
+    query: "",
+  });
 
   const theme = createMuiTheme({
     palette: {
@@ -50,13 +54,18 @@ export function AuthenticatedRoutes() {
                 <Search />
               </GridLayout>
             </Route>
-            <Route path="/document/:id">
-              <GridLayout>
-                <Document />
-              </GridLayout>
-            </Route>
+            <Route
+              path="/document/:id"
+              render={(props) => (
+                <GridLayout>
+                  <Document id={props.match.params.id} />
+                </GridLayout>
+              )}
+            ></Route>
             <Route path="/favourite">
-              <FavouriteList />
+              <GridLayout>
+                <FavouriteList />
+              </GridLayout>
             </Route>
             <Route path="*">
               <Redirect to="/search" />
@@ -68,17 +77,18 @@ export function AuthenticatedRoutes() {
   );
 }
 
+const GridLayoutDiv = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 5fr 95fr;
+  grid-template-rows: 10fr 90fr;
+  grid-template-areas:
+    "user header"
+    "user content";
+`;
+
 function GridLayout(props) {
-  const GridLayoutDiv = styled.div`
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 5fr 95fr;
-    grid-template-rows: 10fr 90fr;
-    grid-template-areas:
-      "user header"
-      "user content";
-  `;
   return (
     <GridLayoutDiv>
       <Header />

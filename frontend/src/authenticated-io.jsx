@@ -13,35 +13,52 @@ export function useAuthenticatedIO(token) {
     return logoutOnUnauthenticated(
       fetch("/api/stars/", {
         method: "GET",
-        headers: [["Authorization", `Token ${token}`]],
+        // headers: [["Authorization", `Token ${token}`]],
       }).then((res) => res.json())
     );
   }
 
-  function setFavourite(doc_id) {
+  function changeFavourite(doc_id) {
     return logoutOnUnauthenticated(
       fetch("/api/stars/", {
         method: "POST",
-        headers: [["Authorization", `Token ${token}`]],
-        body: {
+        headers: [
+          // ["Authorization", `Token ${token}`]
+          ["Content-Type", "application/json"],
+        ],
+        body: JSON.stringify({
           doc_id,
-        },
-      }).then((res) => res.json())
+        }),
+      })
     );
   }
 
-  function removeFavourite(star_id) {
+  function search(search_context, offset = 0) {
     return logoutOnUnauthenticated(
-      fetch(`/api/stars/${star_id}/`, {
-        method: "DELETE",
-        headers: [["Authorization", `Token ${token}`]],
-      })
+      fetch(
+        `/api/search/select?q=JUSTICE+DEPARTMENT+FILES+LAWSUIT&start=${offset}`,
+        {
+          method: "GET",
+          // headers: [["Authorization", `Token ${token}`]],
+        }
+      ).then((r) => r.json())
+    );
+  }
+
+  function getDocuments(ids) {
+    const query = ids.map((id) => `id:${id}`).join(" || ");
+    return logoutOnUnauthenticated(
+      fetch(`/api/search/select?q=${query}`, {
+        method: "GET",
+        // headers: [["Authorization", `Token ${token}`]],
+      }).then((r) => r.json())
     );
   }
 
   return {
     getFavourites,
-    setFavourite,
-    removeFavourite,
+    changeFavourite,
+    search,
+    getDocuments,
   };
 }

@@ -1,37 +1,67 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Typography} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { SearchContext, generateQueryParams } from "../search";
-import {StyledBackButton, StyledElementButton} from "../components/StyledComponents";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {
+  StyledBackButton,
+  StyledElementButton,
+  YellowStarIcon,
+} from "../components/StyledComponents";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { useAuthenticatedIO } from "../authenticated-io";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const DocumentDiv = styled.div`
+  display: grid;
+  grid-template-columns: 70fr 30fr;
+  grid-template-rows: auto;
+  grid-template-areas: "text info";
+`;
+
+const TextDiv = styled.div`
+  grid-area: text;
+  background: E5E5E5;
+`;
+
+const InfoDiv = styled.div`
+  background: E5E5E5;
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+`;
 
 export function Document(props) {
   const history = useHistory();
   const searchContext = useContext(SearchContext);
+  const [result, setResult] = useState();
+  const io = useAuthenticatedIO("FIXMETOKEN");
 
-  const DocumentDiv = styled.div`
-    display: grid;
-    grid-template-columns: 70fr 30fr;
-    grid-template-rows: auto;
-    grid-template-areas: "text info";
-  `;
+  useEffect(() => {
+    if (!result) {
+      setResult("loading");
+      io.getDocuments([props.id]).then((result) => setResult(result.docs[0]));
+    }
+  }, [result]);
 
-  const TextDiv = styled.div`
-    grid-area: text;
-    background: E5E5E5;
-  `;
+  const CenteredTypography = withStyles({
+    root: {
+      "text-align": "center",
+    },
+  })(Typography);
 
-  const InfoDiv = styled.div`
-    background: E5E5E5;
-    grid-area: info;
-    display: flex;
-    flex-direction: column;
-  `;
+  if (!result || result === "loading") return null;
 
   return (
     <DocumentDiv>
-      <TextDiv>DOCUMENT {props.id}</TextDiv>
+      <TextDiv>
+        <Typography variant="h3">
+          {result.title}
+          {result.isFavourite && <YellowStarIcon />}
+        </Typography>
+
+        <Typography>{result.contents}</Typography>
+      </TextDiv>
       <InfoDiv>
         <StyledBackButton
           variant="contained"
@@ -43,24 +73,21 @@ export function Document(props) {
         >
           Back to search results
         </StyledBackButton>
-        <Typography color="textPrimary">
-          Components
-        </Typography>
-        <StyledElementButton
-          variant="contained"
-          color="primary"
-        >
-          Component
-        </StyledElementButton>
-        <Typography color="textPrimary">
+
+        <CenteredTypography variant="h5">Components</CenteredTypography>
+
+        {result.components.map((el) => (
+          <StyledElementButton variant="contained" color="primary">
+            {el}
+          </StyledElementButton>
+        ))}
+
+        {/* <StyledElementButton variant="contained" color="primary">
           Topics
-        </Typography>
-        <StyledElementButton
-          variant="contained"
-          color="primary"
-        >
-          Topic
         </StyledElementButton>
+        <Typography color="textPrimary">{result.components.map((el) => (
+            <>{el}</>
+          ))}</Typography> */}
       </InfoDiv>
     </DocumentDiv>
   );
