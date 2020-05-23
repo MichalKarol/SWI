@@ -38,14 +38,14 @@ export const StyledFieldDropdown = withStyles({
     backgroundColor: "#606060 !important",
     color: "#ffffff",
     textIndent: "0.5em",
-    fontStyle: "normal",
     fontSize: "24px",
     display: "flex",
     alignItems: "center",
-    textAlign: "center",
-    padding: "auto 0",
+    justifyContent: "center",
+    alignSelf: "center",
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    width: "120px",
   },
 })(Dropdown);
 
@@ -57,5 +57,7 @@ export const StyledSortDropdown = withStyles({
     textIndent: "0.5em",
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    width: "170px",
+    textAlign: "center"
   },
 })(Dropdown);

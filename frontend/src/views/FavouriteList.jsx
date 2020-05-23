@@ -15,7 +15,7 @@ import { LowerDateField, UpperDateField } from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory } from "react-router-dom";
 import { ExpandingMultiSelectDropdown } from "../components/ExpansionPanel";
-import { StyledDivider } from "../components/StyledComponents";
+import {CardsDiv, FavouritesDiv, InfoDiv, StyledDivider} from "../components/StyledComponents";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
@@ -66,28 +66,6 @@ import { InfiniteScroll } from "../components/InfiniteScroll";
 // const LimitText = styled.span`
 //   color: black;
 // `;
-
-const FavouritesDiv = styled.div`
-  display: grid;
-  grid-template-rows: 10fr 90fr;
-  grid-template-areas:
-    "info"
-    "cards";
-`;
-
-const InfoDiv = styled.div`
-  background: E5E5E5;
-  grid-area: info;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const CardsDiv = styled.div`
-  background: E5E5E5;
-  grid-area: cards;
-`;
 
 const PAGE_SIZE = 10;
 

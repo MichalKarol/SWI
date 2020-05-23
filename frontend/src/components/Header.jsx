@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../auth";
 import { SearchContext } from "../search";
-import { Dropdown, StyledFieldDropdown } from "../components/Dropdown";
+import { StyledFieldDropdown } from "./Dropdown";
 import { Search } from "@material-ui/icons";
-import { InputBase, Button } from "@material-ui/core";
 import styled from "styled-components";
 import { StyledInputBase, StyledSearchButton } from "./StyledComponents";
 
@@ -13,6 +12,7 @@ const HeaderDiv = styled.div`
   align-items: center;
   grid-area: header;
   background: E5E5E5;
+  margin-right: 128px
 `;
 
 function StyleSearchBar(props) {

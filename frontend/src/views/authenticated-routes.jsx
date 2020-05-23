@@ -16,6 +16,7 @@ import { Document } from "./Document";
 import { FavouriteList } from "./FavouriteList";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import styled from "styled-components";
+import {Register} from "./Register";
 
 export function AuthenticatedRoutes() {
   const auth = useContext(AuthenticationContext);
@@ -65,6 +66,16 @@ export function AuthenticatedRoutes() {
             <Route path="/favourite">
               <GridLayout>
                 <FavouriteList />
+              </GridLayout>
+            </Route>
+            <Route path="/login">
+              <GridLayout>
+                <Login />
+              </GridLayout>
+            </Route>
+            <Route path="/register">
+              <GridLayout>
+                <Register />
               </GridLayout>
             </Route>
             <Route path="*">

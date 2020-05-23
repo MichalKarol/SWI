@@ -14,8 +14,15 @@ import {
 import { LowerDateField, UpperDateField } from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory } from "react-router-dom";
-import { ExpandingMultiSelectDropdown } from "../components/ExpansionPanel";
-import { StyledDivider } from "../components/StyledComponents";
+import {ExpandingMultiSelectDropdown, ExpandingSingleSelectDropdown} from "../components/ExpansionPanel";
+import {
+  CalendarDiv, CardsDiv,
+  DividerDiv,
+  FiltersDiv, InfoDiv,
+  ResultsDiv,
+  SearchDiv,
+  StyledDivider, StyledTypography
+} from "../components/StyledComponents";
 import { InfiniteScroll } from "../components/InfiniteScroll";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -23,95 +30,6 @@ import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Divider from "@material-ui/core/Divider";
 import { SearchContext } from "../search";
 import { useAuthenticatedIO } from "../authenticated-io";
-
-// const StyledDivider = withStyles({
-//   root: {
-//     color: "#fff",
-//   },
-// })(Divider);
-
-// const StyledInputBase = withStyles({
-//   root: {
-//     fontStyle: "normal",
-//     fontSize: "24px",
-//     backgroundColor: "#ffffff",
-//     textIndent: "1em",
-//     boxShadow:
-//       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-//   },
-// })(InputBase);
-
-// const ContainerDiv = styled.div`
-//   display: flex;
-//   justify-content: start;
-// `;
-
-// const DateContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   width: 200px;
-// `;
-
-// const SearchContainer = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   height: auto;
-//   width: 100%;
-//   align-items: stretch;
-//   height: 5vh;
-// `;
-
-// const LimitText = styled.span`
-//   color: black;
-// `;
-
-const SearchDiv = styled.div`
-  display: grid;
-  grid-template-columns: 30fr 70fr;
-  grid-template-rows: auto;
-  grid-template-areas: "filters results";
-`;
-
-const FiltersDiv = styled.div`
-  background: E5E5E5;
-  grid-area: filters;
-`;
-
-const ResultsDiv = styled.div`
-  grid-area: results;
-  display: grid;
-  grid-template-rows: 10fr 90fr;
-  grid-template-areas:
-    "info"
-    "cards";
-`;
-
-const InfoDiv = styled.div`
-  background: E5E5E5;
-  grid-area: info;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-`;
-
-const CalendarDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const DividerDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const CardsDiv = styled.div`
-  background: E5E5E5;
-  grid-area: cards;
-`;
 
 export function Search() {
   const history = useHistory();
@@ -153,15 +71,15 @@ export function Search() {
     <SearchDiv>
       <DividerDiv>
         <FiltersDiv>
-          <Typography color={"textPrimary"} align={"center"}>
+          <StyledTypography>
             Limit your search:
-          </Typography>
+          </StyledTypography>
 
           <ExpandingMultiSelectDropdown
             title="Component"
             values={[
-              { value: "environment", label: "Environment" },
-              { value: "civil rights", label: "Civil Rights" },
+              { value: "topic", label: "topic" },
+              { value: "topic2", label: "topic2" },
             ]}
           />
           <ExpandingMultiSelectDropdown
@@ -171,14 +89,18 @@ export function Search() {
               { value: "civil rights", label: "Civil Rights" },
             ]}
           />
-          <ExpandingMultiSelectDropdown
-            title="Pivot field"
-            tooltip={pivotTooltip}
-            values={[
-              { value: "environment", label: "Environment" },
-              { value: "civil rights", label: "Civil Rights" },
-            ]}
-          />
+          {/*<ExpandingSingleSelectDropdown*/}
+          {/*  title="Pivot field"*/}
+          {/*  tooltip={pivotTooltip}*/}
+          {/*  components={[*/}
+          {/*    { value: "component1", label: "component1" },*/}
+          {/*    { value: "component2", label: "component2" },*/}
+          {/*  ]}*/}
+          {/*  topics={[*/}
+          {/*    { value: "topic", label: "topic" },*/}
+          {/*    { value: "topic2", label: "topic2" },*/}
+          {/*  ]}*/}
+          {/*/>*/}
           <CalendarDiv>
             <UpperDateField placeholder="Date from" />
             <StyledDivider />
