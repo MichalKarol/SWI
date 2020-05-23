@@ -11,9 +11,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useHistory} from "react-router-dom";
 
 export function Register() {
   const authContext = useContext(AuthenticationContext);
+  const history = useHistory();
   const [auth, setAuth] = useState({
     username: "",
     password: "",
@@ -133,7 +135,7 @@ export function Register() {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="\login" variant="body2">
+                <Link onClick={() => history.push("/login")} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

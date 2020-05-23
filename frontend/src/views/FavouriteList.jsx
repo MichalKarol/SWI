@@ -102,16 +102,16 @@ export function FavouriteList() {
     <FavouritesDiv>
       <InfoDiv>
         <Typography color={"textPrimary"} align={"center"}>
-          {results && !isLoading && <>Found {results.length} results</>}
+          {results && !isLoading && <> {results.numFound} results found</>}
         </Typography>
         <StyledSortDropdown
           values={[
-            { value: "relevance", label: "Sort by relevance" },
-            { value: "title", label: "Sort by title" },
-            { value: "asc", label: "Sort by newest" },
-            { value: "desc", label: "Sort by oldest" },
+            { value: " ", label: "Sort by relevance" },
+            { value: "title asc", label: "Sort by title" },
+            { value: "date asc", label: "Sort by newest" },
+            { value: "date desc", label: "Sort by oldest" },
           ]}
-          value={searchContext.state.sort || ""}
+          value={searchContext.state.sort || " "}
           onChange={(event) => {
             const value = event.target.value;
             searchContext.setState((state) => ({ ...state, sort: value }));

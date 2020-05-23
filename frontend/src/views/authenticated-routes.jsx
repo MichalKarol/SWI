@@ -23,9 +23,13 @@ export function AuthenticatedRoutes() {
   const searchContext = useContext(SearchContext);
 
   const [searchState, setSearchState] = useState({
-    field: "All",
-    sort: "relevance",
     query: "",
+    field: "*",
+    sort: " ",
+    topics: [],
+    components: [],
+    dateTo: "*",
+    dateFrom: "*",
   });
 
   const theme = createMuiTheme({

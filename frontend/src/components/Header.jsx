@@ -35,7 +35,7 @@ export function Header() {
     <HeaderDiv className="grid-layout__header">
       <StyledFieldDropdown
         values={[
-          { value: "All", label: "All fields" },
+          { value: "*", label: "All fields" },
           { value: "Title", label: "Title" },
           { value: "Content", label: "Content" },
         ]}

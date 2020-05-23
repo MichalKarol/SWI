@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import {IconButton, Typography} from "@material-ui/core";
 import { SearchContext, generateQueryParams } from "../search";
 import {
   StyledBackButton,
@@ -11,6 +11,7 @@ import {
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useAuthenticatedIO } from "../authenticated-io";
 import withStyles from "@material-ui/core/styles/withStyles";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 
 const DocumentDiv = styled.div`
   display: grid;
@@ -53,42 +54,80 @@ export function Document(props) {
   if (!result || result === "loading") return null;
 
   return (
-    <DocumentDiv>
-      <TextDiv>
-        <Typography variant="h3">
-          {result.title}
-          {result.isFavourite && <YellowStarIcon />}
-        </Typography>
+      <DocumentDiv>
+        <TextDiv>
+          <Typography variant="h3">
+            {result.title}
+            TODO PLEASE UNCOMMENT AND CHECK WITH DATA
+            <IconButton
+                // onClick={
+                //   () => {
+                //     io.changeFavourite(result.id).then(() => {
+                //           const currentResult = result
+                //           currentResult.isFavourite = !currentResult.isFavourite
+                //           setResult(currentResult)
+                //         }
+                //     )
+                //   }
+                // }
+            >
+              {result.isFavourite ? (
+                  <YellowStarIcon fontSize="large"/>
+              ) : (
+                  <StarBorderIcon fontSize="large"/>
+              )}
+            </IconButton>
+            {result.isFavourite && <YellowStarIcon/>}
+          </Typography>
 
-        <Typography>{result.contents}</Typography>
-      </TextDiv>
-      <InfoDiv>
-        <StyledBackButton
-          variant="contained"
-          color="secondary"
-          startIcon={<ArrowBackIcon />}
-          onClick={() => {
-            history.push(`/search?${generateQueryParams(searchContext.state)}`);
-          }}
-        >
-          Back to search results
-        </StyledBackButton>
+          <Typography>{result.contents}</Typography>
+        </TextDiv>
+        <InfoDiv>
+          <StyledBackButton
+              variant="contained"
+              color="secondary"
+              startIcon={<ArrowBackIcon/>}
+              onClick={() => {
+                history.push(`/search?${generateQueryParams(searchContext.state)}`);
+              }}
+          >
+            Back to search results
+          </StyledBackButton>
 
-        <CenteredTypography variant="h5">Components</CenteredTypography>
+          <CenteredTypography variant="h5">Components</CenteredTypography>
 
-        {result.components.map((el) => (
-          <StyledElementButton variant="contained" color="primary">
-            {el}
-          </StyledElementButton>
-        ))}
+          {/*TODO CHECK*/}
 
-        {/* <StyledElementButton variant="contained" color="primary">
+          {result.components.map((el) => (
+              <StyledElementButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    searchContext.setState(() => ({
+                      query: "",
+                      field: "*",
+                      sort: " ",
+                      topics: [],
+                      components: [el],
+                      dateTo: "*",
+                      dateFrom: "*"
+                    }))
+                    history.push(`/search?${generateQueryParams(searchContext.state)}`);
+                  }}
+              >
+                {el}
+              </StyledElementButton>
+          ))}
+
+          {/*TODO UNCOMMENT TOPICS*/}
+
+          {/* <StyledElementButton variant="contained" color="primary">
           Topics
         </StyledElementButton>
         <Typography color="textPrimary">{result.components.map((el) => (
             <>{el}</>
           ))}</Typography> */}
-      </InfoDiv>
-    </DocumentDiv>
+        </InfoDiv>
+      </DocumentDiv>
   );
 }

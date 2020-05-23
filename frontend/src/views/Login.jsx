@@ -13,9 +13,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useHistory} from "react-router-dom";
 
 export function Login() {
   const authContext = useContext(AuthenticationContext);
+  const history = useHistory();
   const [auth, setAuth] = useState({
     username: "",
     password: "",
@@ -141,7 +143,7 @@ export function Login() {
                 {/*</Link>*/}
               </Grid>
               <Grid item>
-                <Link href="\register" variant="body2">
+                <Link onClick={() => history.push("/register")} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const WhiteExpandMoreIcon = withStyles({
   root: {
     color: "#FFFFFF !important",
+    marginRight: "32px"
   },
 })(ExpandMore);
 
@@ -44,8 +45,8 @@ export const StyledFieldDropdown = withStyles({
     justifyContent: "center",
     alignSelf: "center",
     boxShadow:
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    width: "120px",
+        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    width: "275px",
   },
 })(Dropdown);
 
@@ -57,7 +58,7 @@ export const StyledSortDropdown = withStyles({
     textIndent: "0.5em",
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    width: "170px",
+    width: "200px",
     textAlign: "center"
   },
 })(Dropdown);
