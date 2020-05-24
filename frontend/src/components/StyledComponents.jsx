@@ -22,14 +22,14 @@ export const StyledElementButton = withStyles({
         borderRadius: "0 1em 0 1em",
         fontStyle: "normal",
         fontSize: "16px",
-        margin: "16px",
+        margin: "0 0 16px 16px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     },
 })(Button);
 
 export const StyledBackButton = withStyles({
     root: {
-        margin: "16px",
+        margin: "16px 0 16px 16px",
         borderRadius: "0 1em 0 1em",
         fontStyle: "normal",
         fontSize: "16px",
@@ -114,6 +114,8 @@ export const FavouritesDiv = styled.div`
   grid-template-areas:
     "info"
     "cards";
+  margin-left: 16px;
+  margin-right: 128px;
 `;
 
 export const InfoDiv = styled.div`
@@ -135,6 +137,7 @@ export const PivotDiv = styled.div`
 export const CardsDiv = styled.div`
   background: E5E5E5;
   grid-area: cards;
+  margin-right: -32px;
 `;
 
 export const SearchDiv = styled.div`

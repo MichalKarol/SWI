@@ -18,11 +18,13 @@ const DocumentDiv = styled.div`
   grid-template-columns: 70fr 30fr;
   grid-template-rows: auto;
   grid-template-areas: "text info";
+  margin-right: 128px;
 `;
 
 const TextDiv = styled.div`
   grid-area: text;
   background: E5E5E5;
+  margin-top: 16px;
 `;
 
 const InfoDiv = styled.div`
@@ -46,9 +48,10 @@ export function Document(props) {
   }, [result]);
 
   const CenteredTypography = withStyles({
-    root: {
-      "text-align": "center",
-    },
+      root: {
+          margin: "16px 0 16px 16px",
+          textAlign: "center",
+      },
   })(Typography);
 
   if (!result || result === "loading") return null;
