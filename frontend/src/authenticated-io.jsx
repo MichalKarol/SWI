@@ -5,9 +5,11 @@ function generateSOLRQueryParams(searchContext) {
   const queryParams = new URLSearchParams();
 
   const queryParts = [
-    searchContext.field === "*"
-      ? searchContext.query
-      : `${searchContext.field}:${searchContext.query}`,
+    searchContext.query
+      ? searchContext.field === "*"
+        ? searchContext.query
+        : `${searchContext.field}:${searchContext.query}`
+      : "*:*",
     ...(searchContext.dateFrom || searchContext.dateTo
       ? [
           `date:[${searchContext.dateFrom ? searchContext.dateFrom : "*"} TO ${
@@ -35,7 +37,7 @@ function generateSOLRQueryParams(searchContext) {
   return queryParams;
 }
 
-export function useAuthenticatedIO(token) {
+export function useAuthenticatedIO() {
   const authContext = useContext(AuthenticationContext);
   function logoutOnUnauthenticated(promise) {
     return promise.catch((res) => {
@@ -47,7 +49,7 @@ export function useAuthenticatedIO(token) {
     return logoutOnUnauthenticated(
       fetch("/api/stars/", {
         method: "GET",
-        // headers: [["Authorization", `Token ${token}`]],
+        headers: [["Authorization", `Token ${authContext.token}`]],
       }).then((res) => res.json())
     );
   }
@@ -57,8 +59,9 @@ export function useAuthenticatedIO(token) {
       fetch("/api/stars/", {
         method: "POST",
         headers: [
-          // ["Authorization", `Token ${token}`]
-          ["Content-Type", "application/json"],
+          ["Authorization", `Token ${authContext.token}`][
+            ("Content-Type", "application/json")
+          ],
         ],
         body: JSON.stringify({
           doc_id,
@@ -73,7 +76,7 @@ export function useAuthenticatedIO(token) {
     return logoutOnUnauthenticated(
       fetch(`/api/search/select?${queryParams.toString()}`, {
         method: "GET",
-        // headers: [["Authorization", `Token ${token}`]],
+        headers: [["Authorization", `Token ${authContext.token}`]],
       }).then((r) => r.json())
     );
   }
@@ -83,7 +86,7 @@ export function useAuthenticatedIO(token) {
     return logoutOnUnauthenticated(
       fetch(`/api/search/select?q=${query}`, {
         method: "GET",
-        // headers: [["Authorization", `Token ${token}`]],
+        headers: [["Authorization", `Token ${authContext.token}`]],
       }).then((r) => r.json())
     );
   }

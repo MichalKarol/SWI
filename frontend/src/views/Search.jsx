@@ -35,7 +35,7 @@ import Divider from "@material-ui/core/Divider";
 import { SearchContext, generateQueryParams } from "../search";
 import { useAuthenticatedIO } from "../authenticated-io";
 import Button from "@material-ui/core/Button";
-import { TOPICS, COMPONENTS } from "../globals.ts";
+import { TOPICS, COMPONENTS } from "../globals";
 
 export function Search() {
   const history = useHistory();
@@ -43,7 +43,7 @@ export function Search() {
   const searchContext = useContext(SearchContext);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState();
-  const io = useAuthenticatedIO("FIXMETOKEN");
+  const io = useAuthenticatedIO();
 
   useEffect(() => {
     setResults(undefined);

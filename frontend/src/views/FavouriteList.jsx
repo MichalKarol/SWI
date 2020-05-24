@@ -24,7 +24,7 @@ export function FavouriteList() {
   const [stars, setStars] = useState();
   const [page, setPage] = useState(0);
   const [results, setResults] = useState();
-  const io = useAuthenticatedIO("FIXMETOKEN");
+  const io = useAuthenticatedIO();
 
   useEffect(() => {
     if (!stars) {

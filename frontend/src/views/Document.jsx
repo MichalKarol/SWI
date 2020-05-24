@@ -38,7 +38,7 @@ export function Document(props) {
   const history = useHistory();
   const searchContext = useContext(SearchContext);
   const [result, setResult] = useState();
-  const io = useAuthenticatedIO("FIXMETOKEN");
+  const io = useAuthenticatedIO();
 
   useEffect(() => {
     if (!result) {
