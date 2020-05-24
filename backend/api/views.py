@@ -30,11 +30,9 @@ class StarViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        self.request.user = User.objects.get(username="mkarol")  # FIXME(mkarol)
         return Star.objects.filter(user=self.request.user).all()
 
     def create(self, request, *args, **kwargs):
-        self.request.user = User.objects.get(username="mkarol")  # FIXME(mkarol)
         star, created = Star.objects.get_or_create(
             user=self.request.user, doc_id=request.data.get("doc_id")
         )

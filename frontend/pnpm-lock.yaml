@@ -1,11 +1,10 @@
 dependencies:
   '@date-io/date-fns': 1.3.13_date-fns@2.14.0
-  '@material-ui/core': 4.9.14_react-dom@16.13.1+react@16.13.1
-  '@material-ui/pickers': 3.2.10_9e8fb0dde8f8deb92c20dd14e3e63927
+  '@material-ui/core': 4.10.0_react-dom@16.13.1+react@16.13.1
+  '@material-ui/pickers': 3.2.10_ab842d38d7c29122aa130f4a918ec0c2
   '@testing-library/jest-dom': 4.2.4
   '@testing-library/react': 9.5.0_react-dom@16.13.1+react@16.13.1
   '@testing-library/user-event': 7.2.1
-  '@types/date-fns': 2.6.0
   bootstrap: 4.5.0
   date-fns: 2.14.0
   http-proxy-middleware: 1.0.4
@@ -16,7 +15,7 @@ dependencies:
   react-scripts: 3.4.1
   styled-components: 5.1.0_e0769e62e3c98bcdfe1795b4a7453784
 devDependencies:
-  '@material-ui/icons': 4.9.1_9e8fb0dde8f8deb92c20dd14e3e63927
+  '@material-ui/icons': 4.9.1_ab842d38d7c29122aa130f4a918ec0c2
 lockfileVersion: 5.1
 packages:
   /@babel/code-frame/7.8.3:
@@ -1423,14 +1422,14 @@ packages:
       node: '>= 8.3'
     resolution:
       integrity: sha512-OXD0RgQ86Tu3MazKo8bnrkDRaDXXMGUqd+kTtLtK1Zb7CRzQcaSRPPPV37SvYTdevXEBVxe0HXylEjs8ibkmCw==
-  /@material-ui/core/4.9.14_react-dom@16.13.1+react@16.13.1:
+  /@material-ui/core/4.10.0_react-dom@16.13.1+react@16.13.1:
     dependencies:
       '@babel/runtime': 7.9.6
-      '@material-ui/styles': 4.9.14_react-dom@16.13.1+react@16.13.1
+      '@material-ui/styles': 4.10.0_react-dom@16.13.1+react@16.13.1
       '@material-ui/system': 4.9.14_react-dom@16.13.1+react@16.13.1
       '@material-ui/types': 5.1.0
       '@material-ui/utils': 4.9.12_react-dom@16.13.1+react@16.13.1
-      '@types/react-transition-group': 4.2.4
+      '@types/react-transition-group': 4.4.0
       clsx: 1.1.0
       hoist-non-react-statics: 3.3.2
       popper.js: 1.16.1
@@ -1449,11 +1448,11 @@ packages:
       '@types/react':
         optional: true
     resolution:
-      integrity: sha512-71oYrOpInx5honJ9GzZlygPjmsFhn7Bui61/SWLJsPTkMnfvuZfU3qVqlEHjXyDsnZ+uKmLAIdsrOYnphJxxXw==
-  /@material-ui/icons/4.9.1_9e8fb0dde8f8deb92c20dd14e3e63927:
+      integrity: sha512-yVlHe4b8AaoiTHhCOZeszHZ+T2iHU5DncdMGeNcQaaaO+q/Qrq0hxP3iFzTbgjRWnWwftEVQL668GRxcPJVRaQ==
+  /@material-ui/icons/4.9.1_ab842d38d7c29122aa130f4a918ec0c2:
     dependencies:
       '@babel/runtime': 7.9.6
-      '@material-ui/core': 4.9.14_react-dom@16.13.1+react@16.13.1
+      '@material-ui/core': 4.10.0_react-dom@16.13.1+react@16.13.1
       react: 16.13.1
       react-dom: 16.13.1_react@16.13.1
     dev: true
@@ -1469,11 +1468,11 @@ packages:
         optional: true
     resolution:
       integrity: sha512-GBitL3oBWO0hzBhvA9KxqcowRUsA0qzwKkURyC8nppnC3fw54KPKZ+d4V1Eeg/UnDRSzDaI9nGCdel/eh9AQMg==
-  /@material-ui/pickers/3.2.10_9e8fb0dde8f8deb92c20dd14e3e63927:
+  /@material-ui/pickers/3.2.10_ab842d38d7c29122aa130f4a918ec0c2:
     dependencies:
       '@babel/runtime': 7.9.6
       '@date-io/core': 1.3.13
-      '@material-ui/core': 4.9.14_react-dom@16.13.1+react@16.13.1
+      '@material-ui/core': 4.10.0_react-dom@16.13.1+react@16.13.1
       '@types/styled-jsx': 2.2.8
       clsx: 1.1.0
       react: 16.13.1
@@ -1488,7 +1487,7 @@ packages:
       react-dom: ^16.8.4
     resolution:
       integrity: sha512-B8G6Obn5S3RCl7hwahkQj9sKUapwXWFjiaz/Bsw1fhYFdNMnDUolRiWQSoKPb1/oKe37Dtfszoywi1Ynbo3y8w==
-  /@material-ui/styles/4.9.14_react-dom@16.13.1+react@16.13.1:
+  /@material-ui/styles/4.10.0_react-dom@16.13.1+react@16.13.1:
     dependencies:
       '@babel/runtime': 7.9.6
       '@emotion/hash': 0.8.0
@@ -1518,7 +1517,7 @@ packages:
       '@types/react':
         optional: true
     resolution:
-      integrity: sha512-zecwWKgRU2VzdmutNovPB4s5LKI0TWyZKc/AHfPu9iY8tg4UoLjpa4Rn9roYrRfuTbBZHI6b0BXcQ8zkis0nzQ==
+      integrity: sha512-XPwiVTpd3rlnbfrgtEJ1eJJdFCXZkHxy8TrdieaTvwxNYj42VnnCyFzxYeNW9Lhj4V1oD8YtQ6S5Gie7bZDf7Q==
   /@material-ui/system/4.9.14_react-dom@16.13.1+react@16.13.1:
     dependencies:
       '@babel/runtime': 7.9.6
@@ -1803,13 +1802,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
-  /@types/date-fns/2.6.0:
-    dependencies:
-      date-fns: 2.14.0
-    deprecated: 'This is a stub types definition for date-fns (https://github.com/date-fns/date-fns). date-fns provides its own type definitions, so you don''t need @types/date-fns installed!'
-    dev: false
-    resolution:
-      integrity: sha1-sGLKRlYgApCb4MY6ZGftFzE2rME=
   /@types/eslint-visitor-keys/1.0.0:
     dev: false
     resolution:
@@ -1822,13 +1814,13 @@ packages:
     dependencies:
       '@types/events': 3.0.0
       '@types/minimatch': 3.0.3
-      '@types/node': 14.0.4
+      '@types/node': 14.0.5
     dev: false
     resolution:
       integrity: sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
   /@types/http-proxy/1.17.4:
     dependencies:
-      '@types/node': 14.0.4
+      '@types/node': 14.0.5
     dev: false
     resolution:
       integrity: sha512-IrSHl2u6AWXduUaDLqYpt45tLVCtYv7o4Z0s1KghBCDgIIS9oW5K1H8mZG/A2CfeLdEa7rTd1ACOiHBc1EMT2Q==
@@ -1857,10 +1849,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
-  /@types/node/14.0.4:
+  /@types/node/14.0.5:
     dev: false
     resolution:
-      integrity: sha512-k3NqigXWRzQZVBDS5D1U70A5E8Qk4Kh+Ha/x4M8Bt9pF0X05eggfnC9+63Usc9Q928hRUIpIhTQaXsZwZBl4Ew==
+      integrity: sha512-90hiq6/VqtQgX8Sp0EzeIsv3r+ellbGj4URKj5j30tLlZvRUpnAe9YbYnjl3pJM93GyXU0tghHhvXHq+5rnCKA==
   /@types/parse-json/4.0.0:
     dev: false
     resolution:
@@ -1878,11 +1870,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ykkPQ+5nFknnlU6lDd947WbQ6TE3NNzbQAkInC2EKY1qeYdTKp7onFusmYZb+ityzx2YviqT6BXSu+LyWWJwcA==
-  /@types/react-transition-group/4.2.4:
+  /@types/react-transition-group/4.4.0:
     dependencies:
       '@types/react': 16.9.35
     resolution:
-      integrity: sha512-8DMUaDqh0S70TjkqU0DxOu80tFUiiaS9rxkWip/nb7gtvAsbqOXm02UCmR8zdcjWujgeYPiPNTVpVpKzUDotwA==
+      integrity: sha512-/QfLHGpu+2fQOqQaXh8MG9q03bFENooTb/it4jr5kKaZlDQfWvjqWZg48AwzPVMBHlRuTRAY7hRHCEOXz5kV6w==
   /@types/react/16.9.35:
     dependencies:
       '@types/prop-types': 15.7.3
@@ -2531,7 +2523,7 @@ packages:
   /autoprefixer/9.8.0:
     dependencies:
       browserslist: 4.12.0
-      caniuse-lite: 1.0.30001062
+      caniuse-lite: 1.0.30001064
       chalk: 2.4.2
       normalize-range: 0.1.2
       num2fraction: 1.2.2
@@ -2547,10 +2539,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=
-  /aws4/1.9.1:
+  /aws4/1.10.0:
     dev: false
     resolution:
-      integrity: sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
+      integrity: sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
   /axobject-query/2.1.2:
     dev: false
     resolution:
@@ -2975,8 +2967,8 @@ packages:
       integrity: sha512-Z942RysHXmJrhqk88FmKBVq/v5tqmSkDz7p54G/MGyjMnCFFnC79XWNbg+Vta8W6Wb2qtSZTSxIGkJrRpCFEiA==
   /browserslist/4.10.0:
     dependencies:
-      caniuse-lite: 1.0.30001062
-      electron-to-chromium: 1.3.447
+      caniuse-lite: 1.0.30001064
+      electron-to-chromium: 1.3.451
       node-releases: 1.1.56
       pkg-up: 3.1.0
     dev: false
@@ -2985,8 +2977,8 @@ packages:
       integrity: sha512-TpfK0TDgv71dzuTsEAlQiHeWQ/tiPqgNZVdv046fvNtBZrjbv2O3TsWCDU0AWGJJKCF/KsjNdLzR9hXOsh/CfA==
   /browserslist/4.12.0:
     dependencies:
-      caniuse-lite: 1.0.30001062
-      electron-to-chromium: 1.3.447
+      caniuse-lite: 1.0.30001064
+      electron-to-chromium: 1.3.451
       node-releases: 1.1.56
       pkg-up: 2.0.0
     dev: false
@@ -3154,16 +3146,16 @@ packages:
   /caniuse-api/3.0.0:
     dependencies:
       browserslist: 4.12.0
-      caniuse-lite: 1.0.30001062
+      caniuse-lite: 1.0.30001064
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
     resolution:
       integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==
-  /caniuse-lite/1.0.30001062:
+  /caniuse-lite/1.0.30001064:
     dev: false
     resolution:
-      integrity: sha512-ei9ZqeOnN7edDrb24QfJ0OZicpEbsWxv7WusOiQGz/f2SfvBgHHbOEwBJ8HKGVSyx8Z6ndPjxzR6m0NQq+0bfw==
+      integrity: sha512-hdBcQMFvJIrOhkpAZiRXz04Cmetwc9NekeuNl0qZfHOugxOhJKxsjF1RmISMPFjIF4PPx1reliIzbfN42EiQ5A==
   /capture-exit/2.0.0:
     dependencies:
       rsvp: 4.8.5
@@ -3608,7 +3600,7 @@ packages:
     dependencies:
       import-fresh: 2.0.0
       is-directory: 0.3.1
-      js-yaml: 3.13.1
+      js-yaml: 3.14.0
       parse-json: 4.0.0
     dev: false
     engines:
@@ -4309,10 +4301,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
-  /electron-to-chromium/1.3.447:
+  /electron-to-chromium/1.3.451:
     dev: false
     resolution:
-      integrity: sha512-aXQTgDBUfSejZkwrFIQZ/jJOOevQE9ROsvIs4aSib+l4FknL4qUxGWjCySu4msJFHwVKo9fkX+8bIGSHQp/vTg==
+      integrity: sha512-2fvco0F2bBIgqzO8GRP0Jt/91pdrf9KfZ5FsmkYkjERmIJG585cFeFZV4+CO6oTmU3HmCTgfcZuEa7kW8VUh3A==
   /elliptic/6.5.2:
     dependencies:
       bn.js: 4.11.9
@@ -4552,7 +4544,7 @@ packages:
       minimatch: 3.0.4
       object.values: 1.1.1
       read-pkg-up: 2.0.0
-      resolve: 1.15.0
+      resolve: 1.17.0
     dev: false
     engines:
       node: '>=4'
@@ -4674,7 +4666,7 @@ packages:
       imurmurhash: 0.1.4
       inquirer: 7.1.0
       is-glob: 4.0.1
-      js-yaml: 3.13.1
+      js-yaml: 3.14.0
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.3.0
       lodash: 4.17.15
@@ -4951,7 +4943,7 @@ packages:
       integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
   /faye-websocket/0.10.0:
     dependencies:
-      websocket-driver: 0.7.3
+      websocket-driver: 0.7.4
     dev: false
     engines:
       node: '>=0.4.0'
@@ -4959,7 +4951,7 @@ packages:
       integrity: sha1-TkkvjQTftviQA1B/btvy1QHnxvQ=
   /faye-websocket/0.11.3:
     dependencies:
-      websocket-driver: 0.7.3
+      websocket-driver: 0.7.4
     dev: false
     engines:
       node: '>=0.8.0'
@@ -5717,10 +5709,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-ZTTX0MWrsQ2ZAhA1cejAwDLycFsd7I7nVtnkT3Ol0aqodaKW+0CTZDQ1uBv5whptCnc8e8HeRRJxRs0kmm/Qfw==
-  /http-parser-js/0.4.10:
+  /http-parser-js/0.5.2:
     dev: false
     resolution:
-      integrity: sha1-ksnBN0w1CF912zWexWzCV8u5P6Q=
+      integrity: sha512-opCO9ASqg5Wy2FNo7A0sxy71yGbbkJJXLdgMK04Tcypw9jr2MgWbyubb0+WdmDmGnFflO7fRbqbaihh/ENDlRQ==
   /http-proxy-middleware/0.19.1:
     dependencies:
       http-proxy: 1.18.1
@@ -6848,14 +6840,14 @@ packages:
   /js-tokens/4.0.0:
     resolution:
       integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
-  /js-yaml/3.13.1:
+  /js-yaml/3.14.0:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
     dev: false
     hasBin: true
     resolution:
-      integrity: sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
+      integrity: sha512-/4IbIeHcD9VMHFqDR/gQ7EdZdLimOvW2DdcxFjdyyZ9NsbS+ccrXqVWDtab/lRl5AlUqmpBx8EhPaWR+OtY17A==
   /jsbn/0.1.1:
     dev: false
     resolution:
@@ -9031,7 +9023,7 @@ packages:
     dependencies:
       autoprefixer: 9.8.0
       browserslist: 4.12.0
-      caniuse-lite: 1.0.30001062
+      caniuse-lite: 1.0.30001064
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
       css-prefers-color-scheme: 3.1.1
@@ -9943,7 +9935,7 @@ packages:
   /request/2.88.2:
     dependencies:
       aws-sign2: 0.7.0
-      aws4: 1.9.1
+      aws4: 1.10.0
       caseless: 0.12.0
       combined-stream: 1.0.8
       extend: 3.0.2
@@ -10565,13 +10557,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
-  /spdx-correct/3.1.0:
+  /spdx-correct/3.1.1:
     dependencies:
       spdx-expression-parse: 3.0.1
       spdx-license-ids: 3.0.5
     dev: false
     resolution:
-      integrity: sha512-lr2EZCctC2BNR7j7WzJ2FpDznxky1sjfxvvYEyzxNyb6lZXHODmEoJeFu4JupYlkfha1KZpJyoqiJ7pgA1qq8Q==
+      integrity: sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==
   /spdx-exceptions/2.3.0:
     dev: false
     resolution:
@@ -10993,7 +10985,7 @@ packages:
       css-select-base-adapter: 0.1.1
       css-tree: 1.0.0-alpha.37
       csso: 4.0.3
-      js-yaml: 3.13.1
+      js-yaml: 3.14.0
       mkdirp: 0.5.5
       object.values: 1.1.1
       sax: 1.2.4
@@ -11491,7 +11483,7 @@ packages:
       integrity: sha512-usZBT3PW+LOjM25wbqIlZwPeJV+3OSz3M1k1Ws8snlW39dZyYL9lOGC5FgPVHfk0jKmjiDV8Z0mIbVQPiwFs7g==
   /validate-npm-package-license/3.0.4:
     dependencies:
-      spdx-correct: 3.1.0
+      spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: false
     resolution:
@@ -11709,16 +11701,16 @@ packages:
       webpack: '*'
     resolution:
       integrity: sha512-EzJRHvwQyBiYrYqhyjW9AqM90dE4+s1/XtCfn7uWg6cS72zH+2VPFAlsnW0+W0cDi0XRjNKUMoJtpSi50+Ph6w==
-  /websocket-driver/0.7.3:
+  /websocket-driver/0.7.4:
     dependencies:
-      http-parser-js: 0.4.10
+      http-parser-js: 0.5.2
       safe-buffer: 5.2.1
       websocket-extensions: 0.1.3
     dev: false
     engines:
       node: '>=0.8.0'
     resolution:
-      integrity: sha512-bpxWlvbbB459Mlipc5GBzzZwhoZgGEZLuqPaR0INBGnPAY1vdBX6hPnoFXiw+3yWxDuHyQjO2oXTMyS8A5haFg==
+      integrity: sha512-b17KeDIQVjvb0ssuSDF2cYXSg2iztliJ4B9WdsuB6J952qCPKmnVq4DyW5motImXHDC1cBT/1UezrJVsKw5zjg==
   /websocket-extensions/0.1.3:
     dev: false
     engines:
@@ -12056,19 +12048,18 @@ packages:
       integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==
 specifiers:
   '@date-io/date-fns': ^1.3.13
-  '@material-ui/core': ^4.9.14
+  '@material-ui/core': ^4.10.0
   '@material-ui/icons': ^4.9.1
   '@material-ui/pickers': ^3.2.10
   '@testing-library/jest-dom': ^4.2.4
   '@testing-library/react': ^9.5.0
   '@testing-library/user-event': ^7.2.1
-  '@types/date-fns': ^2.6.0
-  bootstrap: ^4.4.1
-  date-fns: ^2.13.0
-  http-proxy-middleware: ^1.0.3
+  bootstrap: ^4.5.0
+  date-fns: ^2.14.0
+  http-proxy-middleware: ^1.0.4
   react: ^16.13.1
   react-bootstrap: ^1.0.1
   react-dom: ^16.13.1
-  react-router-dom: ^5.1.2
+  react-router-dom: ^5.2.0
   react-scripts: 3.4.1
   styled-components: ^5.1.0

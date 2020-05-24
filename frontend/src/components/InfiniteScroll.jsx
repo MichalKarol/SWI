@@ -17,12 +17,10 @@ export function InfiniteScroll(props) {
 
     cardsDivRef.current &&
       cardsDivRef.current.addEventListener("scroll", onScroll);
-    console.log("ADDED");
 
     return () => {
       cardsDivRef.current &&
         cardsDivRef.current.removeEventListener("scroll", onScroll);
-      console.log("REMOVED");
     };
   }, [cardsDivRef.current, props.callback]);
 
