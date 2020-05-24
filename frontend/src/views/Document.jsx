@@ -58,18 +58,17 @@ export function Document(props) {
         <TextDiv>
           <Typography variant="h3">
             {result.title}
-            TODO PLEASE UNCOMMENT AND CHECK WITH DATA
             <IconButton
-                // onClick={
-                //   () => {
-                //     io.changeFavourite(result.id).then(() => {
-                //           const currentResult = result
-                //           currentResult.isFavourite = !currentResult.isFavourite
-                //           setResult(currentResult)
-                //         }
-                //     )
-                //   }
-                // }
+                onClick={
+                  () => {
+                    io.changeFavourite(result.id).then(() => {
+                          const currentResult = result
+                          currentResult.isFavourite = !currentResult.isFavourite
+                          setResult(currentResult)
+                        }
+                    )
+                  }
+                }
             >
               {result.isFavourite ? (
                   <YellowStarIcon fontSize="large"/>
@@ -94,11 +93,10 @@ export function Document(props) {
             Back to search results
           </StyledBackButton>
 
+          {result.components?.length > 0 &&
           <CenteredTypography variant="h5">Components</CenteredTypography>
-
-          {/*TODO CHECK*/}
-
-          {result.components.map((el) => (
+          }
+          {result.components?.map((el) => (
               <StyledElementButton
                   variant="contained"
                   color="primary"
@@ -119,14 +117,31 @@ export function Document(props) {
               </StyledElementButton>
           ))}
 
-          {/*TODO UNCOMMENT TOPICS*/}
 
-          {/* <StyledElementButton variant="contained" color="primary">
-          Topics
-        </StyledElementButton>
-        <Typography color="textPrimary">{result.components.map((el) => (
-            <>{el}</>
-          ))}</Typography> */}
+          {result.topics?.length > 0 &&
+          <CenteredTypography variant="h5">Topics</CenteredTypography>
+          }
+          {result.topics?.map((el) => (
+              <StyledElementButton
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    searchContext.setState(() => ({
+                      query: "",
+                      field: "*",
+                      sort: " ",
+                      topics: [el],
+                      components: [],
+                      dateTo: "*",
+                      dateFrom: "*"
+                    }))
+                    history.push(`/search?${generateQueryParams(searchContext.state)}`);
+                  }}
+              >
+                {el}
+              </StyledElementButton>
+          ))}
+
         </InfoDiv>
       </DocumentDiv>
   );

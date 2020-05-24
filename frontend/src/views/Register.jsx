@@ -19,8 +19,8 @@ export function Register() {
     const [auth, setAuth] = useState({
         username: "",
         password: "",
-        lastName: "",
-        firstName: "",
+        last_name: "",
+        first_name: "",
         email: "",
     });
 
@@ -118,11 +118,11 @@ export function Register() {
                                 name="firstName"
                                 autoComplete="fname"
                                 autoFocus
-                                value={auth.firstName}
+                                value={auth.first_name}
                                 onChange={(e) => {
                                     console.log(auth)
                                     const value = e.target.value;
-                                    setAuth((s) => ({...s, firstName: value}));
+                                    setAuth((s) => ({...s, first_name: value}));
                                 }}
                             />
                         </Grid>
@@ -135,10 +135,10 @@ export function Register() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
-                                value={auth.lastName}
+                                value={auth.last_name}
                                 onChange={(e) => {
                                     const value = e.target.value;
-                                    setAuth((s) => ({...s, lastName: value}));
+                                    setAuth((s) => ({...s, last_name: value}));
                                 }}
                             />
                         </Grid>

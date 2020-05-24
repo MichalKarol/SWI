@@ -164,25 +164,25 @@ export function Search() {
                 <CardsDiv>
                     <InfiniteScroll isLoading={isLoading} callback={onScroll}>
                         <>
-                            {/*{results &&*/}
-                            {/*  results.docs.map((el, idx) => (*/}
-                            {/*    <ResultCard*/}
-                            {/*      {...el}*/}
-                            {/*      key={el.id}*/}
-                            {/*      onFavouriteClick={() => {*/}
-                            {/*        setResults((s) => {*/}
-                            {/*          const newState = { ...s, docs: [...s.docs] };*/}
-                            {/*          newState.docs[idx].isFavourite = !newState.docs[idx]*/}
-                            {/*            .isFavourite;*/}
-                            {/*          io.changeFavourite(el.id);*/}
-                            {/*          return newState;*/}
-                            {/*        });*/}
-                            {/*      }}*/}
-                            {/*      onShowMoreClick={() => {*/}
-                            {/*        history.push(`/document/${el.id}`);*/}
-                            {/*      }}*/}
-                            {/*    />*/}
-                            {/*  ))}*/}
+                            {results &&
+                              results.docs.map((el, idx) => (
+                                <ResultCard
+                                  {...el}
+                                  key={el.id}
+                                  onFavouriteClick={() => {
+                                    setResults((s) => {
+                                      const newState = { ...s, docs: [...s.docs] };
+                                      newState.docs[idx].isFavourite = !newState.docs[idx]
+                                        .isFavourite;
+                                      io.changeFavourite(el.id);
+                                      return newState;
+                                    });
+                                  }}
+                                  onShowMoreClick={() => {
+                                    history.push(`/document/${el.id}`);
+                                  }}
+                                />
+                              ))}
                         </>
                     </InfiniteScroll>
                 </CardsDiv>

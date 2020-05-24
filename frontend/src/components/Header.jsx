@@ -61,7 +61,7 @@ export function Header() {
       >
         Search
       </StyledSearchButton>
-      {JSON.stringify(searchContext.state)}
+      {/*{JSON.stringify(searchContext.state)}*/}
     </HeaderDiv>
   );
 }
