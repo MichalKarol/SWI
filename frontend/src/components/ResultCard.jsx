@@ -39,7 +39,7 @@ export function ResultCard(props) {
           {props.title}
         </Typography>
         <ContentDiv>
-          <ClampedTypography style={{flex:"10"}}>{props.contents}</ClampedTypography>
+          <ClampedTypography style={{flex:"12"}}>{props.contents}</ClampedTypography>
           <IconButton
               style={{flex:"1"}}
               onClick={props.onFavouriteClick}

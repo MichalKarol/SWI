@@ -123,8 +123,7 @@ export const InfoDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-left: 64px;
-  margin-right: 128px;
+  margin-left: 16px;
 `;
 
 export const PivotDiv = styled.div`
@@ -151,6 +150,8 @@ export const FiltersDiv = styled.div`
 `;
 
 export const ResultsDiv = styled.div`
+  margin-left: 16px;
+  margin-right: 128px;
   grid-area: results;
   display: grid;
   grid-template-rows: 10fr 90fr;

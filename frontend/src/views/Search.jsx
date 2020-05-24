@@ -78,6 +78,7 @@ export function Search() {
                         Limit your search:
                     </StyledTypography>
 
+                    {/*TODO collect list of topics and components values from solr by query with facet field and rows=0*/}
                     <ExpandingMultiSelectDropdown
                         title="Component"
                         values={[
@@ -144,15 +145,15 @@ export function Search() {
             </DividerDiv>
             <ResultsDiv>
                 <InfoDiv>
-                    <Typography color={"textPrimary"} align={"center"}>
+                    <StyledTypography color={"textPrimary"} align={"center"}>
                         {results && !isLoading && <> {results.numFound} results found</>}
-                    </Typography>
+                    </StyledTypography>
                     <StyledSortDropdown
                         values={[
                             {value: " ", label: "Sort by relevance"},
                             {value: "title asc", label: "Sort by title"},
-                            {value: "date asc", label: "Sort by newest"},
-                            {value: "date desc", label: "Sort by oldest"},
+                            {value: "date asc", label: "Sort from newest"},
+                            {value: "date desc", label: "Sort from oldest"},
                         ]}
                         value={searchContext.state.sort || " "}
                         onChange={(event) => {
@@ -165,24 +166,24 @@ export function Search() {
                     <InfiniteScroll isLoading={isLoading} callback={onScroll}>
                         <>
                             {results &&
-                              results.docs.map((el, idx) => (
+                            results.docs.map((el, idx) => (
                                 <ResultCard
-                                  {...el}
-                                  key={el.id}
-                                  onFavouriteClick={() => {
-                                    setResults((s) => {
-                                      const newState = { ...s, docs: [...s.docs] };
-                                      newState.docs[idx].isFavourite = !newState.docs[idx]
-                                        .isFavourite;
-                                      io.changeFavourite(el.id);
-                                      return newState;
-                                    });
-                                  }}
-                                  onShowMoreClick={() => {
-                                    history.push(`/document/${el.id}`);
-                                  }}
+                                    {...el}
+                                    key={el.id}
+                                    onFavouriteClick={() => {
+                                        setResults((s) => {
+                                            const newState = {...s, docs: [...s.docs]};
+                                            newState.docs[idx].isFavourite = !newState.docs[idx]
+                                                .isFavourite;
+                                            io.changeFavourite(el.id);
+                                            return newState;
+                                        });
+                                    }}
+                                    onShowMoreClick={() => {
+                                        history.push(`/document/${el.id}`);
+                                    }}
                                 />
-                              ))}
+                            ))}
                         </>
                     </InfiniteScroll>
                 </CardsDiv>
