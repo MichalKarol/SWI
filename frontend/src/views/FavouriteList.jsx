@@ -84,7 +84,7 @@ export function FavouriteList() {
                                         });
                                     }}
                                     onShowMoreClick={() => {
-                                        history.push(`/document/${el.id}`);
+                                        history.push(`/document/"${el.id}"`);
                                     }}
                                 />
                             ))}

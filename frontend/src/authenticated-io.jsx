@@ -19,13 +19,14 @@ function generateSOLRQueryParams(searchContext) {
       : []),
     ...(searchContext.components.length > 0
       ? [
-          searchContext.components
-            .map((component) => `components:"${component}"`)
-            .join(" || "),
+          `components:(${searchContext.components.map((component) => '"'+component+'"').join(" OR ")})`,
         ]
       : []),
     ...(searchContext.topics.length > 0
-      ? [searchContext.topics.map((topic) => `topics:"${topic}"`).join(" || ")]
+      ?
+        [
+            `topics:(${searchContext.topics.map((topic) => '"'+topic+'"').join(" OR ")})`,
+        ]
       : []),
   ];
 
@@ -38,26 +39,28 @@ function generateSOLRQueryParams(searchContext) {
 
 export function useAuthenticatedIO() {
   const authContext = useContext(AuthenticationContext);
+
   function logoutOnUnauthenticated(promise) {
     return promise
-      .then((res) => {
-        if (res.status === 401) {
+        .then((res) => {
+          if (res.status === 401) {
+            authContext.setToken("");
+            window.location.href = "/";
+          }
+          return res;
+        })
+        .catch((res) => {
           authContext.setToken("");
           window.location.href = "/";
-        }
-        return res;
-      })
-      .catch((res) => {
-        authContext.setToken("");
-        window.location.href = "/";
-      });
+        });
   }
+
   function getFavourites() {
     return logoutOnUnauthenticated(
-      fetch("/api/stars/", {
-        method: "GET",
-        headers: [["Authorization", `Token ${authContext.token}`]],
-      })
+        fetch("/api/stars/", {
+          method: "GET",
+          headers: [["Authorization", `Token ${authContext.token}`]],
+        })
     ).then((res) => res.json());
   }
 
@@ -78,20 +81,20 @@ export function useAuthenticatedIO() {
     const queryParams = generateSOLRQueryParams(search_context);
     queryParams.set("start", offset);
     return logoutOnUnauthenticated(
-      fetch(`/api/search/select?${queryParams.toString()}`, {
-        method: "GET",
-        headers: [["Authorization", `Token ${authContext.token}`]],
-      })
+        fetch(`/api/search/select?${queryParams.toString()}`, {
+          method: "GET",
+          headers: [["Authorization", `Token ${authContext.token}`]],
+        })
     ).then((r) => r.json());
   }
 
   function getDocuments(ids) {
     const query = ids.map((id) => `id:${id}`).join(" || ");
     return logoutOnUnauthenticated(
-      fetch(`/api/search/select?q=${query}`, {
-        method: "GET",
-        headers: [["Authorization", `Token ${authContext.token}`]],
-      })
+        fetch(`/api/search/select?q=${query}`, {
+          method: "GET",
+          headers: [["Authorization", `Token ${authContext.token}`]],
+        })
     ).then((r) => r.json());
   }
 

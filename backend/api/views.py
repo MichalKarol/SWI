@@ -105,7 +105,7 @@ def search(request, proxy_path):
         response_data = response.json()
         doc_ids = [doc["id"] for doc in response_data["response"]["docs"]]
         stars = {
-            *Star.objects.filter(user__username="mkarol", doc_id__in=doc_ids)
+            *Star.objects.filter(user__username=request.user.username, doc_id__in=doc_ids)
             .all()
             .values_list("doc_id", flat=True)
         }
