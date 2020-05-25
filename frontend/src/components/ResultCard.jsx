@@ -18,7 +18,7 @@ export function ResultCard(props) {
       margin: "16px",
       width: "auto",
       boxShadow:
-        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+          "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     },
   })(Card);
 
@@ -33,36 +33,36 @@ export function ResultCard(props) {
   })(Typography);
 
   return (
-    <StyledCard>
-      <CardContent>
-        <Typography color="secondary" gutterBottom>
-          {props.title}
-        </Typography>
-        <ContentDiv>
-          <ClampedTypography style={{ flex: "12" }}>
-            {props.contents}
-          </ClampedTypography>
-          <IconButton
-            style={{ flex: "1" }}
-            onClick={props.onFavouriteClick}
-            type="button"
-          >
-            {props.isFavourite ? (
-              <YellowStarIcon fontSize="large" />
-            ) : (
-              <StarBorderIcon fontSize="large" />
-            )}
-          </IconButton>
-          <StyledMoreButton
-            variant="contained"
-            color="secondary"
-            onClick={props.onShowMoreClick}
-            style={{ flex: "2" }}
-          >
-            Show more
-          </StyledMoreButton>
-        </ContentDiv>
-      </CardContent>
-    </StyledCard>
+      <StyledCard>
+        <CardContent>
+          <Typography color="secondary" gutterBottom>
+            {props.title}
+          </Typography>
+          <ContentDiv>
+            <ClampedTypography style={{flex: "12"}}>
+              {props.contents}
+            </ClampedTypography>
+            <IconButton
+                style={{flex: "1"}}
+                onClick={props.onFavouriteClick}
+                type="button"
+            >
+              {props.isFavourite ? (
+                  <YellowStarIcon fontSize="large"/>
+              ) : (
+                  <StarBorderIcon fontSize="large"/>
+              )}
+            </IconButton>
+            <StyledMoreButton
+                variant="contained"
+                color="secondary"
+                onClick={props.onShowMoreClick}
+                style={{flex: "2"}}
+            >
+              Show more
+            </StyledMoreButton>
+          </ContentDiv>
+        </CardContent>
+      </StyledCard>
   );
 }

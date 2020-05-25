@@ -26,13 +26,13 @@ export function Login() {
 
   function Copyright() {
     return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {"Copyright © "}
-        <Link color="inherit" href="https://material-ui.com/">
-          SWI project
-        </Link>
-        {new Date().getFullYear()}
-      </Typography>
+        <Typography variant="body2" color="textSecondary" align="center">
+          {"Copyright © "}
+          <Link color="inherit" href="https://material-ui.com/">
+            SWI project
+          </Link>
+          {new Date().getFullYear()}
+        </Typography>
     );
   }
 
@@ -59,99 +59,99 @@ export function Login() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={(event) => {
-            fetch(`/api/login`, {
-              method: "POST",
-              body: JSON.stringify(auth),
-              headers: [["Content-Type", "application/json"]],
-            })
-              .then((res) => res.json())
-              .then((res) => {
-                setAuth({ username: "", password: "" });
-                authContext.setToken(res.token);
-                history.push("/search");
-              })
-              .catch(() => {
-                // setError
-              });
+      <Container component="main" maxWidth="xs">
+        <CssBaseline/>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon/>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form
+              className={classes.form}
+              noValidate
+              onSubmit={(event) => {
+                fetch(`/api/login`, {
+                  method: "POST",
+                  body: JSON.stringify(auth),
+                  headers: [["Content-Type", "application/json"]],
+                })
+                    .then((res) => res.json())
+                    .then((res) => {
+                      setAuth({username: "", password: ""});
+                      authContext.setToken(res.token);
+                      history.push("/search");
+                    })
+                    .catch(() => {
+                      // setError
+                    });
 
-            event.preventDefault();
-          }}
-        >
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            value={auth.username}
-            onChange={(e) => {
-              const value = e.target.value;
-              setAuth((s) => ({ ...s, username: value }));
-            }}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={auth.password}
-            onChange={(e) => {
-              const value = e.target.value;
-              setAuth((s) => ({ ...s, password: value }));
-            }}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            type="submit"
-            className={classes.submit}
+                event.preventDefault();
+              }}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/*<Link href="#" variant="body2">*/}
-              {/*  Forgot password?*/}
-              {/*</Link>*/}
+            <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
+                autoFocus
+                value={auth.username}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setAuth((s) => ({...s, username: value}));
+                }}
+            />
+            <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={auth.password}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setAuth((s) => ({...s, password: value}));
+                }}
+            />
+            <FormControlLabel
+                control={<Checkbox value="remember" color="primary"/>}
+                label="Remember me"
+            />
+            <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                type="submit"
+                className={classes.submit}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                {/*<Link href="#" variant="body2">*/}
+                {/*  Forgot password?*/}
+                {/*</Link>*/}
+              </Grid>
+              <Grid item>
+                <LinkStyle variant="body2">
+                  <Link to="/register">Don't have an account? Sign Up</Link>
+                </LinkStyle>
+              </Grid>
             </Grid>
-            <Grid item>
-              <LinkStyle variant="body2">
-                <Link to="/register">Don't have an account? Sign Up</Link>
-              </LinkStyle>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright/>
+        </Box>
+      </Container>
   );
 }

@@ -23,7 +23,7 @@ export function AuthenticatedRoutes() {
   const auth = useContext(AuthenticationContext);
 
   const [searchState, setSearchState] = useState(
-    getInitSearchState(window.location.search)
+      getInitSearchState(window.location.search)
   );
 
   const theme = createMuiTheme({
@@ -38,54 +38,54 @@ export function AuthenticatedRoutes() {
   });
 
   return (
-    <MuiThemeProvider theme={theme}>
-      <Router>
-        {auth.token ? (
-          <SearchContext.Provider
-            value={{
-              state: searchState,
-              setState: setSearchState,
-            }}
-          >
-            <Switch>
-              <Route path="/search">
-                <GridLayout>
-                  <Search />
-                </GridLayout>
-              </Route>
-              <Route
-                path="/document/:id"
-                render={(props) => (
-                  <GridLayout>
-                    <Document id={props.match.params.id} />
-                  </GridLayout>
-                )}
-              ></Route>
-              <Route path="/favourite">
-                <GridLayout>
-                  <FavouriteList />
-                </GridLayout>
-              </Route>
-              <Route path="*">
-                <Redirect to="/search" />
-              </Route>
-            </Switch>
-          </SearchContext.Provider>
-        ) : (
-          <Switch>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="*">
-              <Redirect to="/login" />
-            </Route>
-          </Switch>
-        )}
-      </Router>
-    </MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
+        <Router>
+          {auth.token ? (
+              <SearchContext.Provider
+                  value={{
+                    state: searchState,
+                    setState: setSearchState,
+                  }}
+              >
+                <Switch>
+                  <Route path="/search">
+                    <GridLayout>
+                      <Search/>
+                    </GridLayout>
+                  </Route>
+                  <Route
+                      path="/document/:id"
+                      render={(props) => (
+                          <GridLayout>
+                            <Document id={props.match.params.id}/>
+                          </GridLayout>
+                      )}
+                  ></Route>
+                  <Route path="/favourite">
+                    <GridLayout>
+                      <FavouriteList/>
+                    </GridLayout>
+                  </Route>
+                  <Route path="*">
+                    <Redirect to="/search"/>
+                  </Route>
+                </Switch>
+              </SearchContext.Provider>
+          ) : (
+              <Switch>
+                <Route path="/login">
+                  <Login/>
+                </Route>
+                <Route path="/register">
+                  <Register/>
+                </Route>
+                <Route path="*">
+                  <Redirect to="/login"/>
+                </Route>
+              </Switch>
+          )}
+        </Router>
+      </MuiThemeProvider>
   );
 }
 
@@ -102,10 +102,10 @@ const GridLayoutDiv = styled.div`
 
 function GridLayout(props) {
   return (
-    <GridLayoutDiv>
-      <Header />
-      <UserBar />
-      {props.children}
-    </GridLayoutDiv>
+      <GridLayoutDiv>
+        <Header/>
+        <UserBar/>
+        {props.children}
+      </GridLayoutDiv>
   );
 }

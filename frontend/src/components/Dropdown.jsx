@@ -1,35 +1,28 @@
 import React from "react";
 import { Select, MenuItem } from "@material-ui/core";
-import { ExpandMore } from "@material-ui/icons";
 import withStyles from "@material-ui/core/styles/withStyles";
-
-const WhiteExpandMoreIcon = withStyles({
-  root: {
-    color: "#FFFFFF !important",
-    marginRight: "32px",
-  },
-})(ExpandMore);
+import {WhiteExpandMoreIconWithMargin} from "./StyledComponents";
 
 export function Dropdown(props) {
   return (
-    <Select
-      IconComponent={WhiteExpandMoreIcon}
-      MenuProps={{
-        getContentAnchorEl: null,
-        anchorOrigin: {
-          vertical: "bottom",
-        },
-      }}
-      disableUnderline
-      displayEmpty={props.values.length === 0}
-      {...props}
-    >
-      {props.values.map((el, idx) => (
-        <MenuItem value={el.value} key={idx}>
-          {el.label}
-        </MenuItem>
-      ))}
-    </Select>
+      <Select
+          IconComponent={WhiteExpandMoreIconWithMargin}
+          MenuProps={{
+            getContentAnchorEl: null,
+            anchorOrigin: {
+              vertical: "bottom",
+            },
+          }}
+          disableUnderline
+          displayEmpty={props.values.length === 0}
+          {...props}
+      >
+        {props.values.map((el, idx) => (
+            <MenuItem value={el.value} key={idx}>
+              {el.label}
+            </MenuItem>
+        ))}
+      </Select>
   );
 }
 
@@ -45,7 +38,7 @@ export const StyledFieldDropdown = withStyles({
     justifyContent: "center",
     alignSelf: "center",
     boxShadow:
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     width: "275px",
   },
 })(Dropdown);
@@ -57,7 +50,7 @@ export const StyledSortDropdown = withStyles({
     color: "#ffffff",
     textIndent: "0.5em",
     boxShadow:
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     width: "200px",
     textAlign: "center",
   },

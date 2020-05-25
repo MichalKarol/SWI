@@ -6,14 +6,13 @@ import { useHistory, useLocation } from "react-router-dom";
 import { ExpandingMultiSelectDropdown } from "../components/ExpansionPanel";
 import {
   CalendarDiv,
-  CardsDiv,
+  CardsDiv, CenteredTypography,
   DividerDiv,
   FiltersDiv,
   InfoDiv,
   ResultsDiv,
   SearchDiv,
   StyledDivider,
-  StyledTypography,
 } from "../components/StyledComponents";
 import { InfiniteScroll } from "../components/InfiniteScroll";
 import Divider from "@material-ui/core/Divider";
@@ -62,30 +61,34 @@ export function Search() {
     history.push(`/search?${generateQueryParams(new_state)}`);
   }
 
+  function onTopicChange(checked, el) {
+    const new_state = {
+      ...searchContext.state,
+      topics: checked
+        ? [...searchContext.state.topics, el.value]
+        : searchContext.state.topics.filter((e) => e !== el.value),
+    };
+    searchContext.setState(new_state);
+    history.push(`/search?${generateQueryParams(new_state)}`);
+  }
+
   return (
     <SearchDiv>
       <DividerDiv>
         <FiltersDiv>
-          <StyledTypography>Limit your search:</StyledTypography>
+          <CenteredTypography variant="h5">Limit your search:</CenteredTypography>
 
           <ExpandingMultiSelectDropdown
             title="Component"
             values={COMPONENTS}
+            context={searchContext.state.components}
             elementSelected={onComponentChange}
           />
           <ExpandingMultiSelectDropdown
             title="Topic"
             values={TOPICS}
-            elementSelected={(checked, el) => {
-              const new_state = {
-                ...searchContext.state,
-                topics: checked
-                  ? [...searchContext.state.topics, el.value]
-                  : searchContext.state.topics.filter((e) => e !== el.value),
-              };
-              searchContext.setState(new_state);
-              history.push(`/search?${generateQueryParams(new_state)}`);
-            }}
+            context={searchContext.state.topics}
+            elementSelected={onTopicChange}
           />
           <CalendarDiv>
             <UpperDateField
@@ -127,9 +130,9 @@ export function Search() {
       </DividerDiv>
       <ResultsDiv>
         <InfoDiv>
-          <StyledTypography color={"textPrimary"} align={"center"}>
+          <CenteredTypography variant="h5">
             {results && <> {results.numFound} results found</>}
-          </StyledTypography>
+          </CenteredTypography>
           <StyledSortDropdown
             values={[
               { value: " ", label: "Sort by relevance" },

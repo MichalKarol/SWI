@@ -16,6 +16,7 @@ const HeaderDiv = styled.div`
   align-items: center;
   background: E5E5E5;
   margin-right: 128px;
+  margin-top: 16px;
 `;
 
 function StyleSearchBar(props) {

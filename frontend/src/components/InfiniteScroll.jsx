@@ -16,28 +16,28 @@ export function InfiniteScroll(props) {
     }
 
     cardsDivRef.current &&
-      cardsDivRef.current.addEventListener("scroll", onScroll);
+    cardsDivRef.current.addEventListener("scroll", onScroll);
 
     return () => {
       cardsDivRef.current &&
-        cardsDivRef.current.removeEventListener("scroll", onScroll);
+      cardsDivRef.current.removeEventListener("scroll", onScroll);
     };
   }, [cardsDivRef.current, props.callback]);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        overflow: "auto",
-        height: "100%",
-        width: "100%",
-      }}
-      ref={cardsDivRef}
-    >
-      <div style={{ position: "absolute" }}>
-        {props.children}
-        {props.isLoading && <>Loading ...</>}
+      <div
+          style={{
+            position: "relative",
+            overflow: "auto",
+            height: "100%",
+            width: "100%",
+          }}
+          ref={cardsDivRef}
+      >
+        <div style={{position: "absolute"}}>
+          {props.children}
+          {props.isLoading && <>Loading ...</>}
+        </div>
       </div>
-    </div>
   );
 }

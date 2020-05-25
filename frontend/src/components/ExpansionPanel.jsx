@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import {
   Typography,
   ExpansionPanel,
@@ -12,6 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import styled from "styled-components";
 import { PivotDiv, WhiteExpandMoreIcon } from "./StyledComponents";
 import Button from "@material-ui/core/Button";
+import {SearchContext} from "../search";
 
 const CheckboxContainer = styled.div`
   display: flex;
@@ -99,6 +100,7 @@ export function ExpandingMultiSelectDropdown(props) {
                 onChange={(event, checked) =>
                   props.elementSelected(checked, el)
                 }
+                checked={props.context.indexOf(el.value) > -1}
               />
               {idx !== props.values.length - 1 && <Divider />}
             </div>
