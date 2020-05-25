@@ -1,17 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
-import { StyledSortDropdown } from "../components/Dropdown";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory } from "react-router-dom";
 import {
   CardsDiv,
   FavouritesDiv,
   InfoDiv,
-  StyledDivider,
   StyledTypography,
 } from "../components/StyledComponents";
-import Typography from "@material-ui/core/Typography";
-import { SearchContext } from "../search";
 import { useAuthenticatedIO } from "../authenticated-io";
 import { InfiniteScroll } from "../components/InfiniteScroll";
 
@@ -19,7 +15,6 @@ const PAGE_SIZE = 10;
 
 export function FavouriteList() {
   const history = useHistory();
-  const searchContext = useContext(SearchContext);
   const [isLoading, setIsLoading] = useState(false);
   const [stars, setStars] = useState();
   const [page, setPage] = useState(0);
@@ -30,7 +25,7 @@ export function FavouriteList() {
     if (!stars) {
       setIsLoading(true);
       io.getFavourites().then((results) => {
-        const newStars = results.map((star) => star.doc_id);
+        const newStars = results.map((star) => `"${star.doc_id}"`);
         setStars(newStars);
         io.getDocuments(
           newStars.slice(

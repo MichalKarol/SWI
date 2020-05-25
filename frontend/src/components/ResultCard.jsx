@@ -39,10 +39,13 @@ export function ResultCard(props) {
           {props.title}
         </Typography>
         <ContentDiv>
-          <ClampedTypography style={{flex:"12"}}>{props.contents}</ClampedTypography>
+          <ClampedTypography style={{ flex: "12" }}>
+            {props.contents}
+          </ClampedTypography>
           <IconButton
-              style={{flex:"1"}}
-              onClick={props.onFavouriteClick}
+            style={{ flex: "1" }}
+            onClick={props.onFavouriteClick}
+            type="button"
           >
             {props.isFavourite ? (
               <YellowStarIcon fontSize="large" />
@@ -54,7 +57,7 @@ export function ResultCard(props) {
             variant="contained"
             color="secondary"
             onClick={props.onShowMoreClick}
-            style={{flex:"2"}}
+            style={{ flex: "2" }}
           >
             Show more
           </StyledMoreButton>

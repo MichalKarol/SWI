@@ -33,41 +33,45 @@ function generateSOLRQueryParams(searchContext) {
   if (searchContext.sort.trim()) {
     queryParams.set("sort", searchContext.sort.trim());
   }
-  console.log("queryParams", queryParams);
   return queryParams;
 }
 
 export function useAuthenticatedIO() {
   const authContext = useContext(AuthenticationContext);
   function logoutOnUnauthenticated(promise) {
-    return promise.catch((res) => {
-      authContext.setToken("");
-      window.location.href = "/";
-    });
+    return promise
+      .then((res) => {
+        if (res.status === 401) {
+          authContext.setToken("");
+          window.location.href = "/";
+        }
+        return res;
+      })
+      .catch((res) => {
+        authContext.setToken("");
+        window.location.href = "/";
+      });
   }
   function getFavourites() {
     return logoutOnUnauthenticated(
       fetch("/api/stars/", {
         method: "GET",
         headers: [["Authorization", `Token ${authContext.token}`]],
-      }).then((res) => res.json())
-    );
+      })
+    ).then((res) => res.json());
   }
 
   function changeFavourite(doc_id) {
-    return logoutOnUnauthenticated(
-      fetch("/api/stars/", {
-        method: "POST",
-        headers: [
-          ["Authorization", `Token ${authContext.token}`][
-            ("Content-Type", "application/json")
-          ],
-        ],
-        body: JSON.stringify({
-          doc_id,
-        }),
-      })
-    );
+    return fetch("/api/stars/", {
+      method: "POST",
+      headers: [
+        ["Authorization", `Token ${authContext.token}`],
+        ["Content-Type", "application/json"],
+      ],
+      body: JSON.stringify({
+        doc_id,
+      }),
+    });
   }
 
   function search(search_context, offset = 0) {
@@ -77,8 +81,8 @@ export function useAuthenticatedIO() {
       fetch(`/api/search/select?${queryParams.toString()}`, {
         method: "GET",
         headers: [["Authorization", `Token ${authContext.token}`]],
-      }).then((r) => r.json())
-    );
+      })
+    ).then((r) => r.json());
   }
 
   function getDocuments(ids) {
@@ -87,8 +91,8 @@ export function useAuthenticatedIO() {
       fetch(`/api/search/select?q=${query}`, {
         method: "GET",
         headers: [["Authorization", `Token ${authContext.token}`]],
-      }).then((r) => r.json())
-    );
+      })
+    ).then((r) => r.json());
   }
 
   return {

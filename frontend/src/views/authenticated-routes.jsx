@@ -21,7 +21,6 @@ import { getInitSearchState } from "../search";
 
 export function AuthenticatedRoutes() {
   const auth = useContext(AuthenticationContext);
-  const searchContext = useContext(SearchContext);
 
   const [searchState, setSearchState] = useState(
     getInitSearchState(window.location.search)

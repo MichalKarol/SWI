@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Select, MenuItem } from "@material-ui/core";
 import { ExpandMore } from "@material-ui/icons";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -6,7 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 const WhiteExpandMoreIcon = withStyles({
   root: {
     color: "#FFFFFF !important",
-    marginRight: "32px"
+    marginRight: "32px",
   },
 })(ExpandMore);
 
@@ -45,7 +45,7 @@ export const StyledFieldDropdown = withStyles({
     justifyContent: "center",
     alignSelf: "center",
     boxShadow:
-        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     width: "275px",
   },
 })(Dropdown);
@@ -59,6 +59,6 @@ export const StyledSortDropdown = withStyles({
     boxShadow:
       "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     width: "200px",
-    textAlign: "center"
+    textAlign: "center",
   },
 })(Dropdown);

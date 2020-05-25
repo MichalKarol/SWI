@@ -1,13 +1,13 @@
-version: '3.6'
+version: "3.6"
 
 services:
   backend:
-    build: 
+    build:
       context: ./docker/backend
       args:
         USER_ID: ${USER_ID:-1000}
         GROUP_ID: ${GROUP_ID:-1000}
-    volumes: 
+    volumes:
       - ./backend:/django
       - ./docker/backend/docker-entrypoint.sh:/bin/docker-entrypoint.sh
     env_file: .env
@@ -26,8 +26,7 @@ services:
   nginx:
     image: nginx:1.17.9
     volumes:
-      - ./backend:/django
-      - ./frontend/public:/frontend
+      - ./frontend/build:/frontend
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ./docker/nginx/.logs:/var/log/nginx
     env_file: .env
@@ -50,7 +49,6 @@ services:
     image: solr:8.5.1
     volumes:
       - ./docker/solr/judge:/var/solr/data/judge
-      - ./docker/solr/doj.json:/tmp/doj.json
     command:
       - solr-precreate
       - gettingstarted

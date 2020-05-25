@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Typography,
   ExpansionPanel,
@@ -10,16 +10,8 @@ import {
 } from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styled from "styled-components";
-import {
-  PivotDiv,
-  StyledBackButton,
-  SelectedFacetContainer,
-  WhiteBackIcon,
-  WhiteExpandMoreIcon,
-} from "./StyledComponents";
+import { PivotDiv, WhiteExpandMoreIcon } from "./StyledComponents";
 import Button from "@material-ui/core/Button";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import { generateQueryParams, SearchContext } from "../search";
 
 const CheckboxContainer = styled.div`
   display: flex;

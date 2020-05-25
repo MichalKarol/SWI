@@ -1,75 +1,79 @@
-import React from "react";
 import "date-fns";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {Button, InputBase, Typography} from "@material-ui/core";
+import { Button, InputBase, Typography } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import {ExpandMore, Star} from "@material-ui/icons";
+import { ExpandMore, Star } from "@material-ui/icons";
 import styled from "styled-components";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 export const StyledSearchButton = withStyles({
-    root: {
-        width: "300px",
-        borderRadius: "0 1em 0 0",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-        textTransform: "none",
-        fontWeight: "bold",
-    },
+  root: {
+    width: "300px",
+    borderRadius: "0 1em 0 0",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    textTransform: "none",
+    fontWeight: "bold",
+  },
 })(Button);
 
 export const StyledElementButton = withStyles({
-    root: {
-        borderRadius: "0 1em 0 1em",
-        fontStyle: "normal",
-        fontSize: "16px",
-        margin: "0 0 16px 16px",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    },
+  root: {
+    borderRadius: "0 1em 0 1em",
+    fontStyle: "normal",
+    fontSize: "16px",
+    margin: "0 0 16px 16px",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
 })(Button);
 
 export const StyledBackButton = withStyles({
-    root: {
-        margin: "16px 0 16px 16px",
-        borderRadius: "0 1em 0 1em",
-        fontStyle: "normal",
-        fontSize: "16px",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    },
+  root: {
+    margin: "16px 0 16px 16px",
+    borderRadius: "0 1em 0 1em",
+    fontStyle: "normal",
+    fontSize: "16px",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
 })(Button);
 
 export const StyledSideButton = withStyles({
-    root: {
-        borderRadius: "0 5em 5em 0",
-        fontStyle: "normal",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-        margin: "8px",
-    },
+  root: {
+    borderRadius: "0 5em 5em 0",
+    fontStyle: "normal",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    margin: "8px",
+  },
 })(Button);
 
 export const StyledDivider = withStyles({
   root: {
-      backgroundColor: 'white',
-  }
+    backgroundColor: "white",
+  },
 })(Divider);
 
-
 export const StyledInputBase = withStyles({
-    root: {
-        fontStyle: 'normal',
-        fontSize: '24px',
-        backgroundColor: '#ffffff',
-        paddingLeft: '0.2em',
-        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-    }
+  root: {
+    fontStyle: "normal",
+    fontSize: "24px",
+    backgroundColor: "#ffffff",
+    paddingLeft: "0.2em",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
 })(InputBase);
 
 export const StyledMoreButton = withStyles({
-    root: {
-        borderRadius: "0 1em 1em 0",
-        fontStyle: "normal",
-        fontSize: "16px",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-    },
+  root: {
+    borderRadius: "0 1em 1em 0",
+    fontStyle: "normal",
+    fontSize: "16px",
+    boxShadow:
+      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+  },
 })(Button);
 
 export const WhiteExpandMoreIcon = withStyles({
@@ -92,10 +96,10 @@ export const WhiteBackIcon = withStyles({
 
 export const StyledTypography = withStyles({
   root: {
-      color: "textPrimary",
-      fontSize: "24px",
-      marginBottom: "16px",
-      },
+    color: "textPrimary",
+    fontSize: "24px",
+    marginBottom: "16px",
+  },
 })(Typography);
 
 export const SelectedFacetContainer = styled.div`

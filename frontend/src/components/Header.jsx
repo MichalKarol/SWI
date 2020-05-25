@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { AuthenticationContext } from "../auth";
 import { SearchContext, generateQueryParams } from "../search";
 import { StyledFieldDropdown } from "./Dropdown";
 import { Search } from "@material-ui/icons";
@@ -7,11 +6,14 @@ import styled from "styled-components";
 import { StyledInputBase, StyledSearchButton } from "./StyledComponents";
 import { useHistory } from "react-router-dom";
 
+const HeaderForm = styled.form`
+  grid-area: header;
+`;
+
 const HeaderDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  grid-area: header;
   background: E5E5E5;
   margin-right: 128px;
 `;
@@ -29,13 +31,12 @@ function StyleSearchBar(props) {
 }
 
 export function Header() {
-  const authContext = useContext(AuthenticationContext);
   const searchContext = useContext(SearchContext);
   const history = useHistory();
   const [text, setText] = useState(searchContext.state.query || "");
 
   return (
-    <form
+    <HeaderForm
       onSubmit={(event) => {
         const new_state = {
           ...searchContext.state,
@@ -77,6 +78,6 @@ export function Header() {
           Search
         </StyledSearchButton>
       </HeaderDiv>
-    </form>
+    </HeaderForm>
   );
 }

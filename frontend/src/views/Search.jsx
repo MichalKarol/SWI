@@ -1,17 +1,5 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useContext,
-  useCallback,
-  useMemo,
-} from "react";
-import styled from "styled-components";
-
-import {
-  StyledFieldDropdown,
-  StyledSortDropdown,
-} from "../components/Dropdown";
+import React, { useState, useEffect, useContext } from "react";
+import { StyledSortDropdown } from "../components/Dropdown";
 import { LowerDateField, UpperDateField } from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
 import { useHistory, useLocation } from "react-router-dom";
@@ -28,13 +16,9 @@ import {
   StyledTypography,
 } from "../components/StyledComponents";
 import { InfiniteScroll } from "../components/InfiniteScroll";
-import Typography from "@material-ui/core/Typography";
-import Tooltip from "@material-ui/core/Tooltip";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Divider from "@material-ui/core/Divider";
 import { SearchContext, generateQueryParams } from "../search";
 import { useAuthenticatedIO } from "../authenticated-io";
-import Button from "@material-ui/core/Button";
 import { TOPICS, COMPONENTS } from "../globals";
 
 export function Search() {
@@ -183,7 +167,7 @@ export function Search() {
                       });
                     }}
                     onShowMoreClick={() => {
-                      history.push(`/document/${el.id}`);
+                      history.push(`/document/"${el.id}"`);
                     }}
                   />
                 ))}
