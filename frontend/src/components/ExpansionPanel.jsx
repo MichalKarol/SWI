@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState, useMemo, useCallback, memo } from "react";
 import {
   Typography,
   ExpansionPanel,
@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import styled from "styled-components";
 import { PivotDiv, WhiteExpandMoreIcon } from "./StyledComponents";
 import Button from "@material-ui/core/Button";
-import {SearchContext} from "../search";
+import { SearchContext } from "../search";
 
 const CheckboxContainer = styled.div`
   display: flex;
@@ -68,6 +68,14 @@ const PanelDetails = withStyles({
 export function ExpandingMultiSelectDropdown(props) {
   const [summaryRadius, setSummaryRadius] = useState("0.5em 0 0.5em 0");
   const [panelRadius, setPanelRadius] = useState("0.5em 0 0.5em 0");
+  // const checkboxes = useMemo(() => {
+  //   return new Map(
+  //     props.values.map((el) => [el.value, <Checkbox color="secondary" />])
+  //   );
+  // }, [props.values]);
+  const onChange = (value) => (event, checked) =>
+    props.elementSelected(checked, value);
+
   return (
     <Panel
       square
@@ -92,24 +100,48 @@ export function ExpandingMultiSelectDropdown(props) {
       <PanelDetails>
         <CheckboxContainer>
           {props.values.map((el, idx) => (
-            <div key={idx}>
-              <FormControlLabel
-                control={<Checkbox color="secondary" />}
-                value={el.value}
-                label={el.label}
-                onChange={(event, checked) =>
-                  props.elementSelected(checked, el)
-                }
-                checked={props.context.indexOf(el.value) > -1}
-              />
-              {idx !== props.values.length - 1 && <Divider />}
-            </div>
+            <CheckboxMemoElement
+              key={el.value}
+              value={el.value}
+              label={el.label}
+              onChange={onChange(el.value)}
+              checked={props.context.indexOf(el.value) > -1}
+              showDivider={idx !== props.values.length - 1}
+            />
           ))}
         </CheckboxContainer>
       </PanelDetails>
     </Panel>
   );
 }
+
+const CheckboxMemoElement = (props) => {
+  return (
+    <>
+      <CheckboxElement
+        value={props.value}
+        label={props.label}
+        onChange={props.onChange}
+        checked={props.checked}
+      />
+      {props.showDivider && <Divider />}
+    </>
+  );
+};
+//   (prev, next) => prev.checked === next.checked && prev.value === next.value
+// );
+
+const CheckboxElement = (props) => {
+  return (
+    <FormControlLabel
+      control={<Checkbox color="secondary" />}
+      value={props.value}
+      label={props.label}
+      onChange={props.onChange}
+      checked={props.checked}
+    />
+  );
+};
 
 export function ExpandingMultiSelectDropdown2(props) {
   // const [value, setValue] = useState(

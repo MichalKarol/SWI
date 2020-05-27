@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { StyledSortDropdown } from "../components/Dropdown";
 import { LowerDateField, UpperDateField } from "../components/DateField";
 import { ResultCard } from "../components/ResultCard";
@@ -6,7 +6,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { ExpandingMultiSelectDropdown } from "../components/ExpansionPanel";
 import {
   CalendarDiv,
-  CardsDiv, CenteredTypography,
+  CardsDiv,
+  CenteredTypography,
   DividerDiv,
   FiltersDiv,
   InfoDiv,
@@ -50,33 +51,35 @@ export function Search() {
     }
   }
 
-  function onComponentChange(checked, el) {
+  const onComponentChange = (checked, value) => {
     const new_state = {
       ...searchContext.state,
       components: checked
-        ? [...searchContext.state.components, el.value]
-        : searchContext.state.components.filter((e) => e !== el.value),
+        ? [...searchContext.state.components, value]
+        : searchContext.state.components.filter((e) => e !== value),
     };
     searchContext.setState(new_state);
     history.push(`/search?${generateQueryParams(new_state)}`);
-  }
+  };
 
-  function onTopicChange(checked, el) {
+  const onTopicChange = (checked, value) => {
     const new_state = {
       ...searchContext.state,
       topics: checked
-        ? [...searchContext.state.topics, el.value]
-        : searchContext.state.topics.filter((e) => e !== el.value),
+        ? [...searchContext.state.topics, value]
+        : searchContext.state.topics.filter((e) => e !== value),
     };
     searchContext.setState(new_state);
     history.push(`/search?${generateQueryParams(new_state)}`);
-  }
+  };
 
   return (
     <SearchDiv>
       <DividerDiv>
         <FiltersDiv>
-          <CenteredTypography variant="h5">Limit your search:</CenteredTypography>
+          <CenteredTypography variant="h5">
+            Limit your search:
+          </CenteredTypography>
 
           <ExpandingMultiSelectDropdown
             title="Component"
@@ -101,7 +104,8 @@ export function Search() {
               onDateChange={(date) => {
                 const new_state = {
                   ...searchContext.state,
-                  dateFrom: date ? date.toISOString() : null,
+                  dateFrom:
+                    date && !isNaN(date.getTime()) ? date.toISOString() : null,
                 };
                 searchContext.setState(new_state);
                 history.push(`/search?${generateQueryParams(new_state)}`);
@@ -118,7 +122,8 @@ export function Search() {
               onDateChange={(date) => {
                 const new_state = {
                   ...searchContext.state,
-                  dateTo: date ? date.toISOString() : null,
+                  dateTo:
+                    date && !isNaN(date.getTime()) ? date.toISOString() : null,
                 };
                 searchContext.setState(new_state);
                 history.push(`/search?${generateQueryParams(new_state)}`);
